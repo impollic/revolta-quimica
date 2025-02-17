@@ -1,0 +1,180 @@
+@font-face {
+  font-family: "undertale";
+  src: url('./Fonte/determination-mono-web-font/DeterminationMonoWebRegular-Z5oq.ttf');
+  /*   
+  ./Fonte/determination-mono-web-font/DeterminationSansWebRegular-369X.ttf*/
+}
+
+* {
+  user-select: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  cursor: url('./Sprites/cursor.png') 0 0, auto;
+  overflow: hidden;
+}
+
+body {
+  background-image: url('https://img.itch.zone/aW1hZ2UvMTY1NDczNS85NzM2MDc2LmdpZg==/original/Mfb8Aa.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  image-rendering: pixelated;
+}
+canvas {
+  display: block;
+  transition: 1s;
+}
+#jogo {
+  font-family: undertale;
+  color: white;
+  font-size: 2rem;
+  animation: 5s fadeIn ease-in-out;
+}
+.lado {
+  background-color: rgb(0, 0, 0);
+  width: 700px;/*665px*/
+  border: 3px ridge white;
+  border-bottom: none;
+  color: white;
+  font-family: undertale;
+  font-size: 1.8rem;
+  text-align: center;
+}
+.ladoVertical {
+  background-color: black; 
+  width: 50px;
+  height: 600px;
+}
+.container {
+  display: flex;
+  border: 3px ridge white;
+}
+.title {
+  display: flex;
+}
+.exit {
+  background-color: rgb(156, 43, 43);
+  width: 30px;
+  height: 30px;
+  border-right: 3px ridge white;
+  border-top: 3px ridge white;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+
+  display: none;
+}
+.exit:hover {
+  background-color: rgb(209, 43, 43);
+  transition: 0.2s;
+}
+#estadoCarregamento {
+  position: absolute;
+  animation: 5s reversefadeIn ease-in-out;
+  font-family: undertale;
+  color: white;
+  font-size: 3rem;
+  z-index: 100;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }  
+  80% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes reversefadeIn {
+  from {
+    opacity: 1;
+  }  
+  80% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+#container-canvas {
+  overflow: hidden;
+  position: relative;
+}
+.acima {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  display: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  image-rendering: pixelated;
+  filter: brightness(1.5);
+  z-index: 100;
+}
+
+@keyframes animacaoLuta {
+  from {
+    transform: translateY(600px);
+    opacity: 0.4;
+
+  }
+  50% {
+    opacity: 0.4;
+  }
+  to {
+    transform: translateY(-300px);
+    opacity: 0;
+  }
+}
+
+.botoes {
+  
+  width: 690px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  border: 3px ridge white;
+  border-top: none;
+
+  padding: 5px;
+
+}
+.botao {
+  height: 50px;
+  width: 50px;
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+  background-color: black;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  margin: 2.5px;
+
+
+  flex-grow: 1;
+  transition: 0.1s;
+  cursor: url('./Sprites/cursor2.png') 0 0, auto;
+}
+.botao:hover {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: 0.1s;
+}
+#lado {
+  font-size: 2rem;
+  
+}

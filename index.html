@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abertura Revolta Quimica</title>
+    <style>
+        @font-face {
+            font-family: "undertale";
+            src: url('./Fonte/determination-mono-web-font/DeterminationMonoWebRegular-Z5oq.ttf');
+        }
+        * {
+            font-family: undertale;
+            color: white;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            background-color: black;
+            height: 100vh;
+            width: 100vw;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+            flex-direction: column;
+            cursor: url('./Sprites/cursor.png') 0 0, auto;
+
+            image-rendering: pixelated;
+        }
+        main {
+            /*border: 2px solid rgba(255, 255, 255, 0.2);*/
+            
+            width: 600px;
+            height: 300px;
+
+            display: flex;
+           
+        }
+        .texto {
+            margin: 0px;
+            font-size: 2rem;
+            text-align: center;
+            margin: 5px;
+        }
+        .secao {
+            width: 300px;
+            margin: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: url('./Sprites/cursor2.png') 0 0, auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: 0.5s;
+        }
+        .secao:hover {
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: 0.5s;
+        }
+        #logotipo {
+            opacity: 0.3;
+        }
+
+        .textos {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="textos">
+        <p class="texto"> Antes de iniciar o jogo, por favor </p>
+        <p class="texto">selecione seu dispositivo: </p>
+    </div>
+    
+    <main>
+        
+        <section class="Computador secao" onclick="irJogo1()">
+            <p class="texto">Computador</p>
+            <img src="./Sprites/pc.png" alt="computador" width="200px" height="200px">
+        </section>
+        <section class="Celular secao" onclick="irJogo2()">
+            <p class="texto">Celular</p>
+            <img src="./Sprites/celular.png" alt="computador" width="200px" height="200px">
+        </section>
+    </main>
+    <!--<p class="texto" id="logotipo">@ImPollic </p>-->
+</body>
+<script>
+    function irJogo1 () {
+        localStorage.setItem('dispositivo', 'computador');
+        window.location.assign('./jogo.html');
+    }
+    function irJogo2 () {
+        localStorage.setItem('dispositivo', 'celular');
+        window.location.assign('./jogo.html');
+    }
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Revolta Química</title>
+
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="icon" href="./Sprites/logo2.ico">
+
+    <script src="./libraries/p5.min.js"></script>
+    <script src="./libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <!--<button>Carregar</button>-->
+
+    <div class="JOGO" id="jogo">
+
+      <div class="title">
+        <div class="lado" id="lado"></div>
+        <div class="exit" id="botaosair" onclick="sairJogo();">✖</div>
+      </div>
+      <div class="container">
+        <div class="ladoVertical" id="ladoEsq"></div>
+        <div class="container-canvas" id="container-canvas">
+          <div class="acima" id="personagem-atacar-animacao"></div>
+        </div>
+        <div class="ladoVertical" id="ladoDir"></div>
+      </div>
+      
+      
+
+      
+    </div>
+    
+    <p id="estadoCarregamento">Carregando Revolta Química...</p>
+    
+    <script src="./Arquivos/Antecede.js"></script>
+    <script src="./Arquivos/Classes.js"></script>
+    <script src="./Arquivos/Paginas.js"></script>
+    <script src="./Arquivos/Ataques.js"></script>   
+    <script src="./Arquivos/Descarga.js"></script>   
+    <script src="./Arquivos/Estequiometria.js"></script>   
+    <script src="./Arquivos/Controle.js"></script>
+    <script src="./Arquivos/Funcoes.js"></script>
+    <script src="./Arquivos/Principal.js"></script>
+    
+  </body>
+</html>
