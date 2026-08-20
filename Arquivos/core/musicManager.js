@@ -2,13 +2,12 @@ const MusicManager = {
   _tracks: {
     takeover:      { path: './musicasPersona/takeover.mp3',      vol: 0.05 },
     goingdown:     { path: './musicasPersona/goingdown.mp3',     vol: 0.25 },
+    axegrind:      { path: './musicasPersona/axegrind.mp3',      vol: 0.1  },
     massdestruc:   { path: './musicasPersona/breakout.mp3',      vol: 0.1  },
     lastsur:       { path: './musicasPersona/lastsur.mp3',       vol: 0.25 },
     youstrong:     { path: './musicasPersona/youstrong.mp3',     vol: 0.1  },
     fullmoon:      { path: './musicasPersona/fullmoon.mp3',      vol: 0.1  },
-    axegrind:      { path: './musicasPersona/axegrind.mp3',      vol: 0.1  },
     colornightins: { path: './musicasPersona/colornightins.mp3', vol: 0.1  },
-    colornight:    { path: './musicasPersona/colornight.mp3',    vol: 0.1  },
     roadlesstaken: { path: './musicasPersona/roadlesstaken.mp3', vol: 0.1  },
   },
   _loaded: {},
@@ -38,7 +37,7 @@ const MusicManager = {
   play(key) {
     const snd = this.load(key);
     if (snd.isLoaded()) {
-      snd.play();
+      if (!snd.isPlaying()) snd.play();
     } else {
       this._pendingPlay[key] = true;
     }

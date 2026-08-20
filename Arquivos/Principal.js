@@ -8,8 +8,6 @@ function preload() {
   dano = loadSound('./Sons/dano.mp3');
   cutscene = createVideo('./Sprites/Cutscene/cutscene.mp4');
 
-  MusicManager.preload('fullmoon');
-
   // PRELOAD ALL IMAGES INTO CACHE
   ImageCache.preload([
     "./Sprites/Hann/hanCora.gif",
@@ -68,9 +66,7 @@ function setup() {
   dano.setVolume(0.8);
   cutscene.hide();
   cutscene.volume(0.2);
-  //MÚSICA DO MENU (NÃO TOCA IMEDIATAMENTE)
-  MusicManager.play('fullmoon');
-  
+
   // PLAYER (velocidade alterada para 12)
   apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [ImageCache.load('./Sprites/pendul.gif')]);
 
@@ -266,11 +262,7 @@ function draw() {
   // GAMEPLAY
   if (gameplay.ativo) {
     gameplay.elementos.forEach(caixa => caixa.desenhar());
-    if (accONe) {
-       // MUDE SE FOR INICIAR NO COMBATE
-       //acionarIntervalo();
-       //accONe = false;
-      }
+
       gameplay.elementos[0].texto = `HP         ${apollo.vida}/${apollo.vidaOriginal}`;
       gameplay.elementos[1].w = 120 * apollo.vida/apollo.vidaOriginal;
 

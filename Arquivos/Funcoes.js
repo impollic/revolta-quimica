@@ -1,8 +1,3 @@
-// INTERVALO DA ASCENSÃO INTERATÔMICA (frame-based, no setInterval)
-function acionarIntervalo() {
-  // Now handled in draw loop via ascensaoSpawnTimer + deltaTime
-}
-
 // ANIMAÇÃO DO JOGADOR
 let JOGADOR_ANIMACAO_ATIVOU = false;
 
@@ -41,6 +36,9 @@ function explosion(dt = 1) {
         musica_batalha_atual = 'lastsur';
       } 
       if (AtaqueHan == "MANIPULAÇÃO INORGÂNICA") {
+        MusicManager.stop(musica_batalha_atual);
+        musica_batalha_atual = 'axegrind';
+
         hanniman.dialogo = [
           "* Você é bem insistente!   ",
           "* Vamos ver até onde você\naguenta, que tal?    ",
@@ -50,15 +48,15 @@ function explosion(dt = 1) {
         apollo.vida = 20;
       }
       if (AtaqueHan == "DESCARGA VOLTAICA") {
+        MusicManager.stop(musica_batalha_atual);
+        musica_batalha_atual = 'goingdown';
+
         hanniman.dialogo = [
           "* Toda essa luta está me dei\nxando cansado...    ",
           "* Sua resistência é admirável, \nmas inútil!    ",
           "* Agora, testemunhe o verdadei\nro poder da química...    ",
           "> Prof. Hanniman escolheu...\nCOLAPSO ESTEQUIOMÉTRICO!    "
         ];
-
-        MusicManager.stop(musica_batalha_atual);
-        musica_batalha_atual = 'goingdown';
 
       }
       if (AtaqueHan == "COLAPSO ESTEQUIOMÉTRICO") {

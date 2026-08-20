@@ -2,7 +2,6 @@
 const INV_SQRT2 = 0.7071; // 1/sqrt(2) — normaliza velocidade diagonal
 let somClique, novoAtaqueHan, AtaqueHan, raiosInorganicos, cutscene;
 let optEscolhida = "";
-let accONe = true;
 let v = 0;
 let exploOne = true;
 let playCutscene = true;
@@ -40,64 +39,27 @@ function irPara (saida, vinda) {
     vinda.ativo = true;
     somClique.play();
 
-    // APLICAÇÃO DAS MÚSICAS
-    if (vinda == preJogo) {
-        MusicManager.play(musica_batalha_atual);
-    }
-    if (saida == gameplay) {
-        MusicManager.pause(musica_batalha_atual);
-    }
-
-    // TAKEOVER
-    if (vinda == menu) {
-        MusicManager.play('takeover');
-    } else {
-        if (vinda !== escolhas) {
-            MusicManager.pause('takeover');
-        }
-    }
-    if (saida == escolhas) {
-        MusicManager.stop('takeover');
-    }
-    if (vinda == escolhas && (saida == gameplay || saida == recVida)) {
-        MusicManager.play('takeover');
-    }
-    // YOU ARE STRONGER
-    if (vinda == inventario) {
-        MusicManager.play('youstrong');
-    } else {
-        MusicManager.pause('youstrong');
+    // MÚSICA: cena -> trilha (usa === para comparar referências de objeto)
+    function trackOf(scene) {
+        if (scene === menu)        return 'youstrong';
+        if (scene === preJogo)     return musica_batalha_atual;
+        if (scene === gameplay)    return musica_batalha_atual;
+        if (scene === escolhas)    return 'takeover';
+        if (scene === inventario)  return 'youstrong';
+        if (scene === creditos)    return 'roadlesstaken';
+        if (scene === loreContada) return 'colornightins';
+        if (scene === ajuda)       return 'colornightins';
+        if (scene === recVida)     return 'colornightins';
+        if (scene === gameOver)    return 'fullmoon';
+        if (scene === fimJogo)     return 'fullmoon';
+        return null;
     }
 
-    // REACH OUT / ROAD LESS TAKEN
-    if (vinda == creditos) {
-        MusicManager.play('roadlesstaken');
-    } else {
-        MusicManager.pause('roadlesstaken');
-    }
+    const saidaTrack = trackOf(saida);
+    const vindaTrack = trackOf(vinda);
+
+    if (saidaTrack && saidaTrack !== vindaTrack) MusicManager.stop(saidaTrack);
+    if (vindaTrack) MusicManager.play(vindaTrack);
+
     if (vinda == gameplay) ascensaoSpawnTimer = 0;
-
-    // COLOR YOUR NIGHT OU ROAD LESS TAKEN (emilly)
-    if (vinda == loreContada || vinda == ajuda || vinda == recVida) {
-        MusicManager.play('colornightins');
-    } else {
-        MusicManager.pause('colornightins');
-    }
-
-    // FULL MOON FULL LIFE
-    if (vinda == gameOver) {
-        MusicManager.play('fullmoon');
-    }
-    if (saida == intro) {
-        MusicManager.pause('fullmoon');
-    }
-
-    // ALGUMA VARIÁVEL SUPER IMPORTANTE QUE EU NÃO LEMBRO O QUE FAZ
-    if (saida == gameplay) {
-        accONe = true;
-    }   
-
-    if (vinda == fimJogo) {
-        MusicManager.play('colornight');
-    }
 }
