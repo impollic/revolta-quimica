@@ -53,7 +53,7 @@ function carregarPaginas () {
   intro.elementos.push(
     new Caixa (10, 10, 580, 580, "magenta", "", 0, 1, 0, 0, './Sprites/intro.png'),
     new Caixa (width/2 - 47.5, height/2 + 160, 40, 95, color('rgba(255, 255, 255, 0.4)'), "", 0, 0, 0, 1, './Sprites/jogar.png'),
-    new Caixa (width - 100, height - 20, 1, 0, 'white', 'v10.0', 0, 1),
+    new Caixa (width - 100, height - 20, 1, 0, 'white', 'v26.1', 0, 1),
   );
   // Montando a tela de preJogo
   preJogo.elementos.push(

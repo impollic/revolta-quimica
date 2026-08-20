@@ -6,15 +6,15 @@ let v = 0;
 let exploOne = true;
 let playCutscene = true;
 
-// MÚSICAS DE PERSONA
-let colornight, goingdown, lastsur, massdestruc, youstrong, musica_batalha_atual, roadlesstaken, takeover, axegrind, fullmoon;
+// MÚSICA DA BATALHA ATUAL (chave do MusicManager)
+let musica_batalha_atual = 'massdestruc';
 
 // FUNÇÃO DE DESCRIÇÃO DE LOCAL
 const lado = document.getElementById('lado');
 function esc (x) {
   lado.innerHTML = x;
 }
-esc('Revolta Química by ImPollic');
+esc('Revolta Química por ImPollic');
 
 function irPara (saida, vinda) {
     // DESCRIÇÃO DE LOCAL
@@ -40,54 +40,54 @@ function irPara (saida, vinda) {
 
     // APLICAÇÃO DAS MÚSICAS
     if (vinda == preJogo) {
-        musica_batalha_atual.play();
+        MusicManager.play(musica_batalha_atual);
     }
     if (saida == gameplay) {
-        musica_batalha_atual.pause();
+        MusicManager.pause(musica_batalha_atual);
     }
 
     // TAKEOVER
     if (vinda == menu) {
-        takeover.play();
+        MusicManager.play('takeover');
     } else {
         if (vinda !== escolhas) {
-            takeover.pause();
+            MusicManager.pause('takeover');
         }
     }
     if (saida == escolhas) {
-        takeover.stop();
+        MusicManager.stop('takeover');
     }
     if (vinda == escolhas && (saida == gameplay || saida == recVida)) {
-        takeover.play();
+        MusicManager.play('takeover');
     }
     // YOU ARE STRONGER
     if (vinda == inventario) {
-        youstrong.play();
+        MusicManager.play('youstrong');
     } else {
-        youstrong.pause();
+        MusicManager.pause('youstrong');
     }
 
     // REACH OUT / ROAD LESS TAKEN
     if (vinda == creditos) {
-        roadlesstaken.play();
+        MusicManager.play('roadlesstaken');
     } else {
-        roadlesstaken.pause();
+        MusicManager.pause('roadlesstaken');
     }
     if (vinda == gameplay) acionarIntervalo();
 
     // COLOR YOUR NIGHT OU ROAD LESS TAKEN (emilly)
     if (vinda == loreContada || vinda == ajuda || vinda == recVida) {
-        colornightins.play();
+        MusicManager.play('colornightins');
     } else {
-        colornightins.pause();
+        MusicManager.pause('colornightins');
     }
 
     // FULL MOON FULL LIFE
     if (vinda == gameOver) {
-        fullmoon.play();
+        MusicManager.play('fullmoon');
     }
     if (saida == intro) {
-        fullmoon.pause();
+        MusicManager.pause('fullmoon');
     }
 
     // ALGUMA VARIÁVEL SUPER IMPORTANTE QUE EU NÃO LEMBRO O QUE FAZ
@@ -96,6 +96,6 @@ function irPara (saida, vinda) {
     }   
 
     if (vinda == fimJogo) {
-        colornight.play();
+        MusicManager.play('colornight');
     }
 }

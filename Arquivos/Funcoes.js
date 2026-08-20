@@ -52,8 +52,8 @@ function explosion() {
           "> Prof. Hanniman escolheu...\nMANIPULAÇÃO INORGÂNICA!    "
         ];
 
-        musica_batalha_atual.stop();
-        musica_batalha_atual = lastsur;
+        MusicManager.stop(musica_batalha_atual);
+        musica_batalha_atual = 'lastsur';
       } 
       if (AtaqueHan == "MANIPULAÇÃO INORGÂNICA") {
         hanniman.dialogo = [
@@ -72,8 +72,8 @@ function explosion() {
           "> Prof. Hanniman escolheu...\nCOLAPSO ESTEQUIOMÉTRICO!    "
         ];
 
-        musica_batalha_atual.stop();
-        musica_batalha_atual = goingdown;
+        MusicManager.stop(musica_batalha_atual);
+        musica_batalha_atual = 'goingdown';
 
       }
       if (AtaqueHan == "COLAPSO ESTEQUIOMÉTRICO") {

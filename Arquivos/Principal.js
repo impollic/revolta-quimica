@@ -2,26 +2,13 @@
 function sairJogo() {
   document.getElementById('jogo').innerHTML = `<p>404 Game Not Found :/ </p>`;
 }
-setTimeout(() => document.getElementById('estadoCarregamento').style.display='none', 4900);
-
 // CARREGANDO AS MÍDIAS
 function preload() {
   somClique = loadSound('./Sons/click1.mp3');
   dano = loadSound('./Sons/dano.mp3');
-
-  roadlesstaken = loadSound('./musicasPersona/roadlesstaken.mp3');
-  takeover = loadSound('./musicasPersona/takeover.mp3');
   cutscene = createVideo('./Sprites/Cutscene/cutscene.mp4');
-  goingdown = loadSound('./musicasPersona/goingdown.mp3');
-  massdestruc = loadSound('./musicasPersona/breakout.mp3'); //massdestruc
-  lastsur = loadSound('./musicasPersona/lastsur.mp3');
-  youstrong = loadSound('./musicasPersona/youstrong.mp3');
-  fullmoon = loadSound('./musicasPersona/fullmoon.mp3');
-  axegrind = loadSound('./musicasPersona/axegrind.mp3');
-  colornightins = loadSound('./musicasPersona/colornightins.mp3');
-  colornight = loadSound('./musicasPersona/colornight.mp3');
 
-  musica_batalha_atual = massdestruc;
+  MusicManager.preload('fullmoon');
 
   // PRELOAD ALL IMAGES INTO CACHE
   ImageCache.preload([
@@ -81,12 +68,8 @@ function setup() {
   dano.setVolume(0.8);
   cutscene.hide();
   cutscene.volume(0.2);
-  [takeover, goingdown, lastsur, massdestruc, roadlesstaken, youstrong, axegrind, fullmoon, colornightins, colornight].forEach(msc => msc.setVolume(0.1));
-  [takeover].forEach(msc => msc.setVolume(0.05));
-  goingdown.setVolume(0.25);
-  lastsur.setVolume(0.25);
   //MÚSICA DO MENU (NÃO TOCA IMEDIATAMENTE)
-  fullmoon.play();
+  MusicManager.play('fullmoon');
   
   // PLAYER (velocidade alterada para 12)
   apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [ImageCache.load('./Sprites/pendul.gif')]);
@@ -124,7 +107,14 @@ function setup() {
 }
 
 // LOOP PRINCIPAL
+let _loadingHidden = false;
 function draw() {
+  if (!_loadingHidden) {
+    _loadingHidden = true;
+    const el = document.getElementById('estadoCarregamento');
+    el.style.opacity = '0';
+    setTimeout(() => el.style.display = 'none', 300);
+  }
   background(0);
   // MENU
   if (menu.ativo) {

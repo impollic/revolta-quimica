@@ -31,13 +31,12 @@ body {
 }
 canvas {
   display: block;
-  transition: 1s;
 }
 #jogo {
   font-family: undertale;
   color: white;
   font-size: 2rem;
-  animation: 5s fadeIn ease-in-out;
+  animation: 0.2s fadeIn ease-in-out;
 }
 .lado {
   background-color: rgb(0, 0, 0);
@@ -57,6 +56,9 @@ canvas {
 .container {
   display: flex;
   border: 3px ridge white;
+  border-top: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .title {
   display: flex;
@@ -81,12 +83,16 @@ canvas {
   transition: 0.2s;
 }
 #estadoCarregamento {
-  position: absolute;
-  animation: 5s reversefadeIn ease-in-out;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: undertale;
   color: white;
   font-size: 3rem;
   z-index: 100;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
 }
 @keyframes fadeIn {
   from {
