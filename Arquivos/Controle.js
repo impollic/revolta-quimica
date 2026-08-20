@@ -1,5 +1,5 @@
 // VARIÁVEIS DE CONTROLE
-let musicFundo, somClique, digitando, novoAtaqueHan, AtaqueHan, raiosInorganicos, cutscene;
+let somClique, novoAtaqueHan, AtaqueHan, raiosInorganicos, cutscene;
 let optEscolhida = "";
 let accONe = true;
 let v = 0;

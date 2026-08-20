@@ -69,7 +69,7 @@ function carregarPaginas () {
   gameplay.elementos.push(
     new Caixa(width/2 - 130 , height - 80, 20, 400, "white", `HP         ${apollo.vida}/${apollo.vidaOriginal}`, 0, 1),
     new Caixa(width/2 - 85, height - 80, 20, 120, "yellow", "", "yellow"),
-    new Caixa(width/2 - 100, 12.5, 200, 200, "white", "", 0, 1, 0, 0, './Sprites/title.png')
+    new Caixa(width/2 - 100, 12.5, 200, 200, "white", "", 0, 1, 0, 0)
   );
   // Montando a tela de créditos
   creditos.elementos.push(

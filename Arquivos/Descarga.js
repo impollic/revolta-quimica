@@ -57,7 +57,7 @@ class Descarga_Atomica {
         this.toX = toX;
         this.toY = toY;
         this.velocidade = 2;
-        this.sprite = loadImage("./Sprites/esferaEletrostatica.png");
+        this.sprite = ImageCache.get("./Sprites/esferaEletrostatica.png");
         this.adicionou_uma_descarga = false;
     }
     mostrar() {

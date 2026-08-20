@@ -23,8 +23,44 @@ function preload() {
 
   musica_batalha_atual = massdestruc;
 
-  fonteSans = loadFont('./Fonte/determination-mono-web-font/DeterminationSansWebRegular-369X.ttf');
-  hanCoraSprite = loadImage("./Sprites/Hann/hanCora.gif");
+  // PRELOAD ALL IMAGES INTO CACHE
+  ImageCache.preload([
+    "./Sprites/Hann/hanCora.gif",
+    "./Sprites/Hann/hanFalando.gif",
+    "./Sprites/Hann/hanOlho.gif",
+    "./Sprites/Hann/hanIdle.gif",
+    "./Sprites/Hann/hanBraco.gif",
+    "./Sprites/Hann/hanBracos.gif",
+    "./Sprites/Hann/hanCansado.gif",
+    "./Sprites/Hann/hanCanFalando.gif",
+    "./Sprites/Personagens/emi32v1.png",
+    "./Sprites/Personagens/emi32v2.png",
+    "./Sprites/Personagens/emi32v3.png",
+    "./Sprites/Personagens/emilly.png",
+    "./Sprites/Personagens/pollic2.gif",
+    "./Sprites/Personagens/pollic3.gif",
+    "./Sprites/Personagens/pollicATK.gif",
+    "./Sprites/pendul.gif",
+    "./Sprites/pendulQ.png",
+    "./Sprites/intro.png",
+    "./Sprites/jogar.png",
+    "./Sprites/atomAzul.png",
+    "./Sprites/atomVerde.png",
+    "./Sprites/atomVermelho.png",
+    "./Sprites/entalpia1.png",
+    "./Sprites/entalpia2.png",
+    "./Sprites/ionizante.png",
+    "./Sprites/oxired.png",
+    "./Sprites/esferaEletrostatica.png",
+    "./Sprites/Feixes/ing_right.png",
+    "./Sprites/Feixes/ing_left.png",
+    "./Sprites/Feixes/ingR_right.png",
+    "./Sprites/Feixes/ingR_left.png",
+    "./Sprites/Feixes/ing_down.png",
+    "./Sprites/Feixes/ing_up.png",
+    "./Sprites/Feixes/ingR_down.png",
+    "./Sprites/Feixes/ingR_up.png"
+  ]);
 }
 
 // FUNÇÃO SETUP
@@ -38,7 +74,7 @@ function setup() {
   noSmooth();
  
   //para filtros
-  ESTE_CANVAS = document.querySelector('canvas');;
+  ESTE_CANVAS = document.querySelector('canvas');
 
   // VOLUME DAS MÍDIAS
   somClique.setVolume(0.05);
@@ -53,7 +89,7 @@ function setup() {
   fullmoon.play();
   
   // PLAYER (velocidade alterada para 12)
-  apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [loadImage('Sprites/pendul.gif')]);
+  apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [ImageCache.load('./Sprites/pendul.gif')]);
 
   // DEFINIÇÃO DE FUNÇÕES RECARREGÁVEIS
   carregarPaginas();
@@ -181,11 +217,11 @@ function draw() {
       if (caixa instanceof CaixaDialogo) {
         caixa.acelerar();
         if (caixa.passarFrase()) {
-          preJogo.elementos[1].img = loadImage("./Sprites/Hann/hanFalando.gif");
+          preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanFalando.gif");
           irPara(loreContada, lab);
         } else {
-          if (caixa.n == 3) loreContada.elementos[1].img = loadImage('./Sprites/Personagens/emi32v2.png');
-          if (caixa.n == 7) loreContada.elementos[1].img = loadImage('./Sprites/Personagens/emi32v3.png');
+          if (caixa.n == 3) loreContada.elementos[1].img = ImageCache.load('./Sprites/Personagens/emi32v2.png');
+          if (caixa.n == 7) loreContada.elementos[1].img = ImageCache.load('./Sprites/Personagens/emi32v3.png');
         }
       };
     })
@@ -209,7 +245,7 @@ function draw() {
       if (caixa instanceof CaixaDialogo) {
         caixa.acelerar();
         if (caixa.passarFrase()) {
-          preJogo.elementos[1].img = loadImage("./Sprites/Hann/hanFalando.gif");
+          preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanFalando.gif");
           irPara(recVida, menu); 
           // MUDANÇAS
         } 
@@ -270,39 +306,40 @@ function draw() {
           }
           explosion();        
         }
-        atomos.forEach(a => {
+        for (let i = atomos.length - 1; i >= 0; i--) {
+          let a = atomos[i];
           a.desenhar(); 
           a.mover(); 
-          a.colidir();
-        });
+          if (a.colidir()) {
+            atomos.splice(i, 1);
+          }
+        }
       }
       // ATAQUE DE MANIPULAÇÃO INORGÂNICA
       if (AtaqueHan == "MANIPULAÇÃO INORGÂNICA") {
-        atomos.forEach(a => {
-          if (atomos.length) {
-            a.desenhar(); 
-            if (!a.mover()) {
-              atomos.splice(atomos.indexOf(a), 1);
-              if (atomos.length == 0) {
-                for(let i = 0; i<3; i++) {
-                  if (raiosInorganicos.length) {
-                    atomos.push(raiosInorganicos.shift());
-                  } else {
-                    atomos.length = 0;
-                  }
+        for (let i = atomos.length - 1; i >= 0; i--) {
+          let a = atomos[i];
+          a.desenhar(); 
+          if (!a.mover()) {
+            atomos.splice(i, 1);
+            if (atomos.length == 0) {
+              for(let j = 0; j<3; j++) {
+                if (raiosInorganicos.length) {
+                  atomos.push(raiosInorganicos.shift());
+                } else {
+                  atomos.length = 0;
                 }
               }
             }
-            if (a.colidiu()) {
-              atomos.splice(atomos.indexOf(a), 1);
-              apollo.vida -= (a.cor == "red")?2:1;
-              dano.play();
-              if (apollo.vida <= 0) {
-                apollo.vivo = false;
-              }
+          } else if (a.colidiu()) {
+            atomos.splice(i, 1);
+            apollo.vida -= (a.cor == "red")?2:1;
+            dano.play();
+            if (apollo.vida <= 0) {
+              apollo.vivo = false;
             }
-          } 
-        });
+          }
+        }
         if (!atomos.length) {
           if (exploOne !== "PARE!") {
             exploOne = false;

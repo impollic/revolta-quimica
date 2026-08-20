@@ -15,7 +15,7 @@ class Ataques {
         this.random_vy = random(5, -5);
         this.random_d = random(5, 15);
 
-        this.img_default = loadImage('./Sprites/entalpia2.png');
+        this.img_default = ImageCache.get('./Sprites/entalpia2.png');
     }
     desenhar() {
       image(this.img_default, this.x - 16, this.y - 16, 32, 32);
@@ -35,7 +35,7 @@ class EntalpiaExplosiva extends Ataques {
         for(let i = 0; i < 20; i++) {
             this.proj.push(new Ataques("Partícula", 0, this.toX, this.toY));
         }
-        this.img = loadImage('./Sprites/entalpia1.png');
+        this.img = ImageCache.get('./Sprites/entalpia1.png');
     }
     desenhar () {
       image(this.img, this.x - 16, this.y - 16, 32, 32);
@@ -69,13 +69,13 @@ class OxidacaoReduzida extends Ataques {
     super("OXIDAÇÃO REDUZIDA", projDano,x, y, toX, toY, vn = 3, vw = 3);
       this.vx = vn;
       this.vy = vw;
-      this.img_default = loadImage('./Sprites/oxired.png');
+      this.img_default = ImageCache.get('./Sprites/oxired.png');
 
       this.proj = [];
 
       // AJEITAR DEPOIS (PASSAR PARA O CONSTRUTOR)
       let atk = new Ataques('particula', 0, this.toX, this.toY);
-      atk.img_default = loadImage('./Sprites/oxired.png');
+      atk.img_default = ImageCache.get('./Sprites/oxired.png');
       atk.random_vy = 2;
       this.proj.push(atk);
       
@@ -121,29 +121,29 @@ class FeixeInorganico {
     if (!this.vy) {
       if (this.cor == "white") {
         if (this.vx > 0) {
-          this.img = loadImage('./Sprites/Feixes/ing_right.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ing_right.png');
         } else {
-          this.img = loadImage('./Sprites/Feixes/ing_left.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ing_left.png');
         }
       } else {
         if (this.vx > 0) {
-          this.img = loadImage('./Sprites/Feixes/ingR_right.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ingR_right.png');
         } else {
-          this.img = loadImage('./Sprites/Feixes/ingR_left.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ingR_left.png');
         }
       }
     } else {
       if (this.cor == "white") {
         if (this.vy > 0) {
-          this.img = loadImage('./Sprites/Feixes/ing_down.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ing_down.png');
         } else {
-          this.img = loadImage('./Sprites/Feixes/ing_up.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ing_up.png');
         }
       } else {
         if (this.vy > 0) {
-          this.img = loadImage('./Sprites/Feixes/ingR_down.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ingR_down.png');
         } else {
-          this.img = loadImage('./Sprites/Feixes/ingR_up.png');
+          this.img = ImageCache.get('./Sprites/Feixes/ingR_up.png');
         }
       }
     }   
@@ -188,13 +188,13 @@ class ForcaIonizante extends Ataques {
       super("FORÇA IONIZANTE", projDano,x, y, toX, toY, vn = 1, vw = 3);
       this.vx = vn;
       this.vy = vw;
-      this.img_default = loadImage('./Sprites/ionizante.png');
+      this.img_default = ImageCache.get('./Sprites/ionizante.png');
 
       this.proj = [];
       for (let i = 0; i<2; i++) {
         // AJEITAR DEPOIS (PASSAR PARA O CONSTRUTOR)
         let atk = new Ataques('particula', 0, this.toX, this.toY);
-        atk.img_default = loadImage('./Sprites/ionizante.png');
+        atk.img_default = ImageCache.get('./Sprites/ionizante.png');
         atk.random_vx = (i%2==0) ? 5 : -5;
         atk.random_vy = random(1, -1);
         this.proj.push(atk);

@@ -12,7 +12,7 @@ class Caixa {
     this.textoTOPO = textoTOPO;
     this.apertavel = apertavel;
     if (imagem) {
-      this.img = loadImage(imagem);
+      this.img = ImageCache.get(imagem);
     }
     
     this.symbol = symbol;
@@ -133,7 +133,7 @@ class Atom {
     this.vx = random(1.5,-1.5);
     this.vy = random(3, 4);
     let num = Math.floor(Math.random() * (3 - 1 + 1) + 1);
-    this.sprite = loadImage((num == 1) ? './Sprites/atomAzul.png' : (num == 2) ? './Sprites/atomVerde.png' : './Sprites/atomVermelho.png');
+    this.sprite = ImageCache.get((num == 1) ? './Sprites/atomAzul.png' : (num == 2) ? './Sprites/atomVerde.png' : './Sprites/atomVermelho.png');
     
   }
   desenhar() {
@@ -148,11 +148,12 @@ class Atom {
       apollo.vida -= 2;
       dano.play();
       if (apollo.vida<=0) apollo.vivo = false;
-      atomos.splice(atomos.indexOf(this), 1);
+      return true;
     }
     if (this.x + 10 > width || this.x - 10 < 0 || this.y + 10 > height) {
-      atomos.splice(atomos.indexOf(this), 1);
+      return true;
     }
+    return false;
   }
 }
 let atomos = [];
@@ -190,7 +191,7 @@ class CaixaDialogo extends Caixa {
       this.g = 0;
       this.n++;
       if (this.n == this.frases.length-1) {
-        preJogo.elementos[1].img = loadImage("./Sprites/Hann/hanOlho.gif");
+        preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanOlho.gif");
       }
     }
     // VELOCIDADE TEXTO

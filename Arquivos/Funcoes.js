@@ -26,7 +26,7 @@ function explosion() {
   if (!JOGADOR_ANIMACAO_ATIVOU) {
     JOGADOR_ANIMACAO_ATIVOU = true;
     ativarAnimacaoAtaque('./Sprites/Personagens/pollicATK.gif');
-    gameplay.elementos[2].img = hanCoraSprite;
+    gameplay.elementos[2].img = ImageCache.get("./Sprites/Hann/hanCora.gif");
   }
 
 
@@ -129,9 +129,9 @@ function reset() {
   escolhas.elementos[7].w = 120 * apollo.vida/apollo.vidaOriginal;
 
   if (AtaqueHan !== 'COLAPSO ESTEQUIOMÉTRICO') {
-    preJogo.elementos[1].img = loadImage("./Sprites/Hann/hanFalando.gif");
+    preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanFalando.gif");
   } else {
-    preJogo.elementos[1].img = loadImage("./Sprites/Hann/hanCanFalando.gif");
+    preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanCanFalando.gif");
   }
 
 
@@ -148,16 +148,16 @@ function reset() {
 function hanSpriteGame () {
   switch (AtaqueHan) {
     case "ASCENSÃO INTERATÔMICA":
-      return loadImage("./Sprites/Hann/hanIdle.gif");
+      return ImageCache.load("./Sprites/Hann/hanIdle.gif");
       break;
     case "MANIPULAÇÃO INORGÂNICA":
-      return loadImage("./Sprites/Hann/hanBraco.gif");
+      return ImageCache.load("./Sprites/Hann/hanBraco.gif");
       break;
     case "DESCARGA VOLTAICA":
-      return loadImage("./Sprites/Hann/hanBracos.gif");
+      return ImageCache.load("./Sprites/Hann/hanBracos.gif");
       break;
     case "COLAPSO ESTEQUIOMÉTRICO":
-      return loadImage("./Sprites/Hann/hanCansado.gif");
+      return ImageCache.load("./Sprites/Hann/hanCansado.gif");
       break;
       
   }
