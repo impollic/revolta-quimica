@@ -1,0 +1,110 @@
+ARQUIVOS SRC FONTES ETC ===================================================
+
+styles.css went to ./style
+Arquivos became src
+
+Fonte\determi...\...ttf went to \fonts
+monoweregularz5 determination-mono-web-regular.ttf
+sanswebregularx369 determination-sans-web-regular.ttf
+
+sons went to sfx
+click1 click
+dano damage
+
+renomeando musicas:
+musicasPersona files went to music
+axegrind axe-to-grind
+breakout break-out-of
+colornightins color-your-night
+fullmoon full-moon-full-life
+goingdown going-down-now
+lastsur last-surprise
+roadlesstaken road-less-taken
+takeover take-over
+youstrong you-are-stronger
+
+musicManager musicManager
+
+=======================
+Ataques.js se transformou dividiu em: (NESSA ORDEM)
+
+ataques.js
+entalpia-explosiva.js
+oxidacao-reduzida.js
+feixe-inorganico.js
+forca-ionizante.js
+energias.js
+
+Classes.js se transformou dividiu em: (NESSA ORDEM)
+caixa.js
+personagem.js
+atom.js
+inimigo.js
+caixa-dialogo.js
+
+Descarga.js virou descarga.js
+
+Estequiometria.js virou estequiometria.js
+Controle.js virou controller.js
+
+Principal.js virou main.js
+
+Funcoes.js virou:
+explosion.js
+reset.js
+inimigo-sprite.js
+attack-animation.js
+
+Cenarios.js virou scenarios.js
+
+SPRITES ==============================================================
+
+Custcenes custcenes:
+battle active -> active-battle
+custcene.mp4 animated-custcene.mp4
+entrando apollo-back
+pollo apollo-front
+port door
+
+
+Feixes:
+ing_down.png -> feixe-down.png na pasta feixe-comum
+ingR_down.png -> feixe-vermelho-down.png na pasta feixe-vermelho
+
+Atomos
+atomAzul atomo-azul na pasta atomos
+...
+
+entalpia1 entapia-1 na pasta entalpia
+
+cursor em ui\cursor
+
+oxired virou oxireducao
+ionizante virou for forca-ionizante
+esferaEletrostatica (esfera-eletrostatica) foi para descarga-voltaica
+
+pendul.gif é pingente.gif
+pendulQ é pingente-quebrado
+
+emi32v1 emilly-idle
+emi32v2 emilly-olho-fechado
+emi32v3 emilly-chateada
+emilly emilly-menu
+
+pollic1 apollo-idle
+pollic2 apollo-menu
+pollic3 apollo-preparar-ataque
+pollicATK.png apollo-atacando
+pollicATK.gif apollo-atacando-animated
+
+han1 hanniman-model
+hanBraco hanniman-braco
+hanBracos hanniman-bracos
+hanCanFalando hanniman-cansado-falando
+hanCansado hanniman-cansado
+hanCora hanniman-coracao
+hanFalando hanniman-falando
+hanIdle hanniman-idle
+hanOlho hanniman-olho
+
+logo2.ico virou favicon.ico
