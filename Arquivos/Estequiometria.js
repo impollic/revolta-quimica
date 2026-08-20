@@ -20,23 +20,23 @@ class Area_Estequiometrica {
             circle(this.x, this.y, this.d);
         pop();
     }
-    mover () {
+    mover (dt = 1) {
         if (dist(this.x, this.y, this.toX, this.toY) < 5 ) return false;
         if (this.x < this.toX) {
-            this.x += this.velocidade_movimento;
+            this.x += this.velocidade_movimento * dt;
         } else {
-            this.x -= this.velocidade_movimento;
+            this.x -= this.velocidade_movimento * dt;
         }
         if (this.y < this.toY) {
-            this.y += this.velocidade_movimento;
+            this.y += this.velocidade_movimento * dt;
         } else {
-            this.y -= this.velocidade_movimento;
+            this.y -= this.velocidade_movimento * dt;
         }
         return true;
     }
-    aumentarDiametro () {
+    aumentarDiametro (dt = 1) {
         if (this.d / this.dOriginal > 8) this.velocidade_aumento = this.velocidade_aumento_neg;
-        this.d += this.velocidade_aumento;
+        this.d += this.velocidade_aumento * dt;
         if (this.d < 0) return false; 
         return true;
     }

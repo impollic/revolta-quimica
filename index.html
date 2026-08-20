@@ -1,102 +1,86 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abertura Revolta Quimica</title>
-    <style>
-        @font-face {
-            font-family: "undertale";
-            src: url('./Fonte/determination-mono-web-font/DeterminationMonoWebRegular-Z5oq.ttf');
-        }
-        * {
-            font-family: undertale;
-            color: white;
-            box-sizing: border-box;
-            user-select: none;
-        }
-        body {
-            background-color: black;
-            height: 100vh;
-            width: 100vw;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    <title>Revolta Química</title>
 
-            overflow: hidden;
-            flex-direction: column;
-            cursor: url('./Sprites/cursor.png') 0 0, auto;
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="icon" href="./Sprites/logo2.ico">
 
-            image-rendering: pixelated;
-        }
-        main {
-            /*border: 2px solid rgba(255, 255, 255, 0.2);*/
-            
-            width: 600px;
-            height: 300px;
+    <script src="./libraries/p5.min.js"></script>
+    <script src="./libraries/p5.sound.min.js"></script>
+  </head>
 
-            display: flex;
-           
-        }
-        .texto {
-            margin: 0px;
-            font-size: 2rem;
-            text-align: center;
-            margin: 5px;
-        }
-        .secao {
-            width: 300px;
-            margin: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            cursor: url('./Sprites/cursor2.png') 0 0, auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            transition: 0.5s;
-        }
-        .secao:hover {
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: 0.5s;
-        }
-        #logotipo {
-            opacity: 0.3;
-        }
-
-        .textos {
-            margin: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="textos">
-        <p class="texto"> Antes de iniciar o jogo, por favor </p>
-        <p class="texto">selecione seu dispositivo: </p>
+  <body>
+    <div class="JOGO" id="jogo">
+      <div class="title">
+        <div class="lado" id="lado"></div>
+        <div class="exit" id="botaosair" onclick="sairJogo();">✖</div>
+      </div>
+      <div class="container">
+        <div class="ladoVertical" id="ladoEsq"></div>
+        <div class="container-canvas" id="container-canvas">
+          <div class="acima" id="personagem-atacar-animacao"></div>
+        </div>
+        <div class="ladoVertical" id="ladoDir"></div>
+      </div>
     </div>
+    <p id="estadoCarregamento">Carregando Revolta Química...</p>
     
-    <main>
-        
-        <section class="Computador secao" onclick="irJogo1()">
-            <p class="texto">Computador</p>
-            <img src="./Sprites/pc.png" alt="computador" width="200px" height="200px">
-        </section>
-        <section class="Celular secao" onclick="irJogo2()">
-            <p class="texto">Celular</p>
-            <img src="./Sprites/celular.png" alt="computador" width="200px" height="200px">
-        </section>
-    </main>
-    <!--<p class="texto" id="logotipo">@ImPollic </p>-->
-</body>
-<script>
-    function irJogo1 () {
-        localStorage.setItem('dispositivo', 'computador');
-        window.location.assign('./jogo.html');
-    }
-    function irJogo2 () {
-        localStorage.setItem('dispositivo', 'celular');
-        window.location.assign('./jogo.html');
-    }
-</script>
+    <script src="./Arquivos/core/cache.js"></script>
+    <script src="./Arquivos/core/musicManager.js"></script>
+    <script src="./Arquivos/Classes.js"></script>
+    <script>
+      (function() {
+        var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (!isTouchDevice) return;
+
+        var botoesDiv = document.createElement('div');
+        botoesDiv.className = 'botoes';
+
+        var dirs = [
+          { cls: 'botao-left',  down: irEsquerda,  up: NAOirEsquerda },
+          { cls: 'botao-up',    down: irCima,      up: NAOirCima },
+          { cls: 'botao-down',  down: irBaixo,     up: NAOirBaixo },
+          { cls: 'botao-right', down: irDireita,   up: NAOirDireita }
+        ];
+
+        dirs.forEach(function(d) {
+          var btn = document.createElement('button');
+          btn.className = 'botao ' + d.cls;
+
+          btn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            btn.classList.add('active');
+            d.down();
+          }, { passive: false });
+
+          btn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            btn.classList.remove('active');
+            d.up();
+          }, { passive: false });
+
+          btn.addEventListener('touchcancel', function(e) {
+            btn.classList.remove('active');
+            d.up();
+          }, { passive: false });
+
+          botoesDiv.appendChild(btn);
+        });
+
+        document.getElementById('jogo').appendChild(botoesDiv);
+      })();
+    </script>
+    <script src="./Arquivos/Paginas.js"></script>
+    <script src="./Arquivos/Ataques.js"></script>   
+    <script src="./Arquivos/Descarga.js"></script>   
+    <script src="./Arquivos/Estequiometria.js"></script>   
+    <script src="./Arquivos/Controle.js"></script>
+    <script src="./Arquivos/Funcoes.js"></script>
+    <script src="./Arquivos/Principal.js"></script>
+    
+  </body>
 </html>

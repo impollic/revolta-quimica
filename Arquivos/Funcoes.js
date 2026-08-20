@@ -1,28 +1,13 @@
-// INTERVALO DA ASCENSÃO INTERATÔMICA
+// INTERVALO DA ASCENSÃO INTERATÔMICA (frame-based, no setInterval)
 function acionarIntervalo() {
-
-  let atirar = setInterval(() => {
-    if (AtaqueHan == "ASCENSÃO INTERATÔMICA") {
-      for (let j = 1; j <=3; j++) {
-        for (let i = 1; i<=5; i++) {
-          atomos.push(new Atom (i*width/5 - 60,-10));
-        }
-      }
-    }
-    v++;
-    if (v>=7) {
-      // Encerrar o próprio intervalo
-      clearInterval(atirar);
-    }
-  }, 2000);
-
+  // Now handled in draw loop via ascensaoSpawnTimer + deltaTime
 }
 
 // ANIMAÇÃO DO JOGADOR
 let JOGADOR_ANIMACAO_ATIVOU = false;
 
 // EXPLOSÃO DE DIFERENTES ATAQUES 
-function explosion() { 
+function explosion(dt = 1) { 
   if (!JOGADOR_ANIMACAO_ATIVOU) {
     JOGADOR_ANIMACAO_ATIVOU = true;
     ativarAnimacaoAtaque('./Sprites/Personagens/pollicATK.gif');
@@ -31,7 +16,7 @@ function explosion() {
 
 
   energias.forEach(e => {
-    if (! e.mover()){
+    if (! e.mover(dt)){
       e.desenhar();
     }
     push();

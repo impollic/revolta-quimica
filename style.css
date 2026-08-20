@@ -149,36 +149,74 @@ canvas {
 }
 
 .botoes {
-  
-  width: 690px;
-  height: 50px;
+  width: 100%;
+  max-width: 690px;
+  height: auto;
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   border: 3px ridge white;
   border-top: none;
-
-  padding: 5px;
-
+  padding: 10px 5px;
+  gap: 8px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
 }
 .botao {
-  height: 50px;
-  width: 50px;
-  font-size: 1.5rem;
+  height: 56px;
+  width: 56px;
+  font-size: 0;
   text-align: center;
   color: white;
   background-color: black;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  margin: 2.5px;
-
-
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  margin: 0;
   flex-grow: 1;
-  transition: 0.1s;
-  cursor: url('./Sprites/cursor2.png') 0 0, auto;
+  max-width: 70px;
+  transition: background-color 0.05s, border-color 0.05s;
+  cursor: pointer;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
-.botao:hover {
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  transition: 0.1s;
+.botao::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+.botao-left::before {
+  border-width: 10px 14px 10px 0;
+  border-color: transparent white transparent transparent;
+  left: 35%;
+}
+.botao-up::before {
+  border-width: 0 10px 14px 10px;
+  border-color: transparent transparent white transparent;
+  top: 40%;
+}
+.botao-down::before {
+  border-width: 14px 10px 0 10px;
+  border-color: white transparent transparent transparent;
+  top: 60%;
+}
+.botao-right::before {
+  border-width: 10px 0 10px 14px;
+  border-color: transparent transparent transparent white;
+  left: 65%;
+}
+.botao:active,
+.botao.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: white;
 }
 #lado {
   font-size: 2rem;

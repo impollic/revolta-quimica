@@ -108,8 +108,10 @@ assets/
 js/
   core/ (main.js, state.js, input.js, cache.js, utils.js)
   entities/ (player.js, enemy.js, ui.js)
-  attacks/ (attacks.js, descarga.js, stoichiometry.js)
+  attacks/ (attacks.js, attack-explosion.js, stoichiometry.js)
 ```
+
+File naming convention: use hyphens (`-`), not underscores (`_`). E.g. `attack-explosion.js`, not `attack_explosion.js`.
 
 Rename assets only if ALL code references are updated simultaneously.
 
@@ -134,12 +136,12 @@ After each phase:
 - [ ] Chrome DevTools Memory heap snapshot
 - [ ] Network tab request count and transfer size
 - [ ] Performance recording during gameplay (target: 30+ FPS on 4x CPU throttle)
-- [ ] Full playthrough of all 4 attack phases
-- [ ] All dialogue transitions work
-- [ ] All music transitions work (no overlap, no silence gaps)
-- [ ] Attack animations trigger correctly
-- [ ] Player movement feels the same
-- [ ] Game over and restart works
+- [x] Full playthrough of all 4 attack phases (validated by user)
+- [x] All dialogue transitions work (validated by user)
+- [x] All music transitions work (no overlap, no silence gaps) (validated by user)
+- [x] Attack animations trigger correctly (validated by user)
+- [x] Player movement feels the same (validated by user)
+- [x] Game over and restart works (validated by user)
 - [ ] Deploy to GitHub Pages and Vercel, verify load time < 5s on 3G
 
 ## Targets

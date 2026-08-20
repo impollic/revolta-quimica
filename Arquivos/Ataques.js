@@ -20,9 +20,9 @@ class Ataques {
     desenhar() {
       image(this.img_default, this.x - 16, this.y - 16, 32, 32);
     }
-    atualizar () {
-        this.x += this.random_vx;
-        this.y += this.random_vy; 
+    atualizar (dt = 1) {
+        this.x += this.random_vx * dt;
+        this.y += this.random_vy * dt; 
     }
 
 }
@@ -40,27 +40,27 @@ class EntalpiaExplosiva extends Ataques {
     desenhar () {
       image(this.img, this.x - 16, this.y - 16, 32, 32);
     }
-    mover() {
+    mover(dt = 1) {
         if (dist(this.x, this.y, this.toX, this.toY) < 15) {
-            this.explodir();    
+            this.explodir(dt);    
             return true;
         }
         if (this.x > this.toX) {
-            this.x -= this.vx;
+            this.x -= this.vx * dt;
         } else {
-            this.x += this.vx;
+            this.x += this.vx * dt;
         }
         if (this.y > this.toY) {
-            this.y -= this.vy;
+            this.y -= this.vy * dt;
         } else {
-            this.y += this.vy;
+            this.y += this.vy * dt;
         }
         return false;
     }
-    explodir () {
+    explodir (dt = 1) {
         this.proj.forEach(p => {
             p.desenhar();
-            p.atualizar();
+            p.atualizar(dt);
         });
     }
 }
@@ -83,27 +83,27 @@ class OxidacaoReduzida extends Ataques {
   desenhar() {
     image(this.img_default, this.x - 16, this.y - 16, 32, 32);
   }
-  mover() {
+  mover(dt = 1) {
     if (dist(this.x, this.y, this.toX, this.toY) < 15) {
-      this.explodir();    
+      this.explodir(dt);    
       return true;
     } 
     if (this.x > this.toX) {
-        this.x -= this.vx;
+        this.x -= this.vx * dt;
     } else {
-        this.x += this.vx;
+        this.x += this.vx * dt;
     }
     if (this.y > this.toY) {
-        this.y -= this.vy;
+        this.y -= this.vy * dt;
     } else {
-        this.y += this.vy;
+        this.y += this.vy * dt;
     }
     return false;
   }
-  explodir() {
+  explodir(dt = 1) {
     this.proj.forEach(p => {
       p.desenhar();
-      p.atualizar();
+      p.atualizar(dt);
      });
   }
 }
@@ -157,9 +157,9 @@ class FeixeInorganico {
       }
     pop();
   }
-  mover() {
-    this.x += this.vx;
-    this.y += this.vy;
+  mover(dt = 1) {
+    this.x += this.vx * dt;
+    this.y += this.vy * dt;
     if (this.y > height || this.y < - 300 || this.x < - 300 || this.x + this.w > width + 250) {
       return false;
     }
@@ -203,27 +203,27 @@ class ForcaIonizante extends Ataques {
   desenhar() {  
     image(this.img_default, this.x - 16, this.y - 16, 32, 32);
   }
-  mover() {
+  mover(dt = 1) {
       if (dist(this.x, this.y, this.toX, this.toY) < 15) {
-        this.explodir();    
+        this.explodir(dt);    
         return true;
       } 
       if (this.x > this.toX) {
-          this.x -= this.vx;
+          this.x -= this.vx * dt;
       } else {
-          this.x += this.vx;
+          this.x += this.vx * dt;
       }
       if (this.y > this.toY) {
-          this.y -= this.vy;
+          this.y -= this.vy * dt;
       } else {
-          this.y += this.vy;
+          this.y += this.vy * dt;
       }
       return false;
   }
-  explodir() {
+  explodir(dt = 1) {
     this.proj.forEach(p => {
       p.desenhar();
-      p.atualizar();
+      p.atualizar(dt);
      });
   }
 }

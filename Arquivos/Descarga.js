@@ -22,19 +22,19 @@ class Descarga_Atomica_Eletricidade {
             rect(this.x, this.y, this.w, this.h);
         pop();
     }
-    moverPara() {
+    moverPara(dt = 1) {
         //this.x += this.vx;
         //this.y += this.vy;
         if (this.h > this.w) {
-            if (this.w == 0) return false;
-            this.w += this.velocidade_propagacao;
+            if (this.w <= 0) return false;
+            this.w += this.velocidade_propagacao * dt;
             if (this.w > 21) {
                 this.velocidade_propagacao*=-1;
             }
             return true;
         } else {
-            if (this.h  == 0) return false;
-            this.h += this.velocidade_propagacao;
+            if (this.h <= 0) return false;
+            this.h += this.velocidade_propagacao * dt;
             if (this.h > 21) {
                 this.velocidade_propagacao*=-1;
             }
@@ -80,17 +80,17 @@ class Descarga_Atomica {
         descargas.push(DESCARGA_ELETRICA);
     }
 
-    moverPara() {
+    moverPara(dt = 1) {
         if (dist(this.x, this.y, this.toX, this.toY) < 10 ) return false;
         if (this.x < this.toX) {
-            this.x += this.velocidade;
+            this.x += this.velocidade * dt;
         } else {
-            this.x -= this.velocidade;
+            this.x -= this.velocidade * dt;
         }
         if (this.y < this.toY) {
-            this.y += this.velocidade;
+            this.y += this.velocidade * dt;
         } else {
-            this.y -= this.velocidade;
+            this.y -= this.velocidade * dt;
         }
 
         return true;

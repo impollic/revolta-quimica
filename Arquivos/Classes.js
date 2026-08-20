@@ -103,27 +103,21 @@ class Personagem {
   mostrar() {
     image(this.pendul, this.x - 16, this.y - 17, 16 * 2, 17 * 2);
   }
-  mover() {
-    if (keyIsDown(87) || keyIsDown(38) || moverCima) {
-      // W
-      if (this.y + this.agilidade/3 <= 245 + 20) return;
-      this.y -= this.agilidade/3;
-    }    
-    if (keyIsDown(65) || keyIsDown(37) || moverEsquerda) {
-      // A
-      if (this.x + this.agilidade/3 <= 170 + 20) return;
-      this.x -= this.agilidade/3;
+  mover(dt = 1) {
+    let dx = 0, dy = 0;
+    if (keyIsDown(87) || keyIsDown(38) || moverCima)    dy -= 1;
+    if (keyIsDown(83) || keyIsDown(40) || moverBaixo)   dy += 1;
+    if (keyIsDown(65) || keyIsDown(37) || moverEsquerda) dx -= 1;
+    if (keyIsDown(68) || keyIsDown(39) || moverDireita)  dx += 1;
+    if (dx !== 0 && dy !== 0) {
+      dx *= INV_SQRT2;
+      dy *= INV_SQRT2;
     }
-    if (keyIsDown(83) || keyIsDown(40) || moverBaixo) {
-      // S
-      if (this.y + this.agilidade/3 >= 500 - 10) return;
-      this.y += this.agilidade/3;
-    }
-    if (keyIsDown(68) || keyIsDown(39) || moverDireita) {
-      // D
-      if (this.x + this.agilidade/3 >= 425 - 10) return;
-      this.x += this.agilidade/3;
-    }
+    let step = this.agilidade / 3 * dt;
+    let nx = this.x + dx * step;
+    let ny = this.y + dy * step;
+    if (nx >= 170 + 20 && nx <= 425 - 10) this.x = nx;
+    if (ny >= 245 + 20 && ny <= 500 - 10) this.y = ny;
   }
 }
 class Atom {
@@ -139,9 +133,9 @@ class Atom {
   desenhar() {
    image(this.sprite, this.x - 16, this.y - 16 , 32, 32);
   }
-  mover() {
-    this.x += this.vx;
-    this.y += this.vy;
+  mover(dt = 1) {
+    this.x += this.vx * dt;
+    this.y += this.vy * dt;
   }
   colidir() {
     if (dist(this.x, this.y, apollo.x, apollo.y) < 20 ) {
@@ -195,7 +189,7 @@ class CaixaDialogo extends Caixa {
       }
     }
     // VELOCIDADE TEXTO
-    this.g += this.veloc;
+    this.g += this.veloc * (typeof dt !== 'undefined' ? dt : 1);
     return false;
   }
   acelerar() {

@@ -109,6 +109,7 @@ function setup() {
 // LOOP PRINCIPAL
 let _loadingHidden = false;
 function draw() {
+  let dt = deltaTime / 16.667;
   if (!_loadingHidden) {
     _loadingHidden = true;
     const el = document.getElementById('estadoCarregamento');
@@ -286,20 +287,32 @@ function draw() {
       square(width/2 - 140, height/2 - 70, 280);
 
       apollo.mostrar();
-      apollo.mover();
+      apollo.mover(dt);
 
       // ATAQUE DE ASCENSÃO INTERATÔMICA 
       if (AtaqueHan == "ASCENSÃO INTERATÔMICA") {
+        if (v < 7) {
+          ascensaoSpawnTimer += deltaTime;
+          if (ascensaoSpawnTimer >= 2000) {
+            ascensaoSpawnTimer -= 2000;
+            for (let j = 1; j <= 3; j++) {
+              for (let i = 1; i <= 5; i++) {
+                atomos.push(new Atom(i * width / 5 - 60, -10));
+              }
+            }
+            v++;
+          }
+        }
         if (atomos.length == 0 && v > 3) {
           if (exploOne !== "PARE!") {
             exploOne = false;
           }
-          explosion();        
+          explosion(dt);        
         }
         for (let i = atomos.length - 1; i >= 0; i--) {
           let a = atomos[i];
           a.desenhar(); 
-          a.mover(); 
+          a.mover(dt); 
           if (a.colidir()) {
             atomos.splice(i, 1);
           }
@@ -310,7 +323,7 @@ function draw() {
         for (let i = atomos.length - 1; i >= 0; i--) {
           let a = atomos[i];
           a.desenhar(); 
-          if (!a.mover()) {
+          if (!a.mover(dt)) {
             atomos.splice(i, 1);
             if (atomos.length == 0) {
               for(let j = 0; j<3; j++) {
@@ -334,20 +347,20 @@ function draw() {
           if (exploOne !== "PARE!") {
             exploOne = false;
           }
-          explosion();
+          explosion(dt);
         }
       }
       // DESCARGA VOLTAICA
       if (AtaqueHan == "DESCARGA VOLTAICA") {
         if (descarga_vezes_repetida >= 7) {
           if (exploOne !== "PARE!") exploOne = false;
-          explosion();
+          explosion(dt);
           return;
         }
         let [ descarga_comum_parou_mover, descarga_eletrica_parou_mover ] = [0, 0];
         for (let descarga of descargas) {
           descarga.mostrar();
-          if (!descarga.moverPara()) {
+          if (!descarga.moverPara(dt)) {
             if (descarga instanceof Descarga_Atomica) {
               descarga_comum_parou_mover++;
             } else {
@@ -383,7 +396,7 @@ function draw() {
 
         if (area_vezes_repetida >= 10) {
           if (exploOne !== "PARE!") exploOne = false;
-          explosion();
+          explosion(dt);
           return;
         }
         let [projeteis_parou_aumentar, area_parou_mover] = [0, 0];
@@ -394,13 +407,13 @@ function draw() {
             dano.play();
             if (apollo.vida <= 0) apollo.vivo = false;  
           }
-          if (!area.mover()) {
+          if (!area.mover(dt)) {
             area_parou_mover++;
           }
         }
         if (area_parou_mover == 10) {
           for (let area of projeteis_estequiometricos) {
-            if (!area.aumentarDiametro()) {
+            if (!area.aumentarDiametro(dt)) {
               projeteis_parou_aumentar++;
             }
           }

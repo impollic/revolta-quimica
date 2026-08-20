@@ -1,10 +1,12 @@
 // VARIÁVEIS DE CONTROLE
+const INV_SQRT2 = 0.7071; // 1/sqrt(2) — normaliza velocidade diagonal
 let somClique, novoAtaqueHan, AtaqueHan, raiosInorganicos, cutscene;
 let optEscolhida = "";
 let accONe = true;
 let v = 0;
 let exploOne = true;
 let playCutscene = true;
+let ascensaoSpawnTimer = 0;
 
 // MÚSICA DA BATALHA ATUAL (chave do MusicManager)
 let musica_batalha_atual = 'massdestruc';
@@ -73,7 +75,7 @@ function irPara (saida, vinda) {
     } else {
         MusicManager.pause('roadlesstaken');
     }
-    if (vinda == gameplay) acionarIntervalo();
+    if (vinda == gameplay) ascensaoSpawnTimer = 0;
 
     // COLOR YOUR NIGHT OU ROAD LESS TAKEN (emilly)
     if (vinda == loreContada || vinda == ajuda || vinda == recVida) {
