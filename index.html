@@ -30,9 +30,15 @@
     <p id="estadoCarregamento">Carregando Revolta Química...</p>
     
     <script src="./src/core/cache.js"></script>
-    <script src="./src/core/musicManager.js"></script>
+    <script src="./src/core/music-manager.js"></script>
 
-    <script src="./src/Classes.js"></script>
+    <script src="./src/classes/caixa.js"></script>
+    <script src="./src/classes/personagem.js"></script>
+    <script src="./src/classes/inimigo.js"></script>
+    <script src="./src/classes/caixa-dialogo.js"></script>
+    <script src="./src/classes/inimigo-sprite.js"></script>
+
+    <script src="./src/scenarios.js"></script>
 
     <script>
       (function() {
@@ -76,13 +82,24 @@
         document.getElementById('jogo').appendChild(botoesDiv);
       })();
     </script>
-    <script src="./src/Paginas.js"></script>
-    <script src="./src/Ataques.js"></script>   
-    <script src="./src/Descarga.js"></script>   
-    <script src="./src/Estequiometria.js"></script>   
-    <script src="./src/Controle.js"></script>
-    <script src="./src/Funcoes.js"></script>
-    <script src="./src/Principal.js"></script>
+
+    <script src="./src/attacks/player/ataques.js"></script>
+    <script src="./src/attacks/player/entalpia-explosiva.js"></script>
+    <script src="./src/attacks/player/forca-ionizante.js"></script>
+    <script src="./src/attacks/player/oxidacao-reduzida.js"></script>
+    <script src="./src/attacks/player/attack-animation.js"></script>
+
+    <script src="./src/attacks/inimigo/atom.js"></script>
+    <script src="./src/attacks/inimigo/feixe-inorganico.js"></script>
+    <script src="./src/attacks/inimigo/descarga.js"></script>
+    <script src="./src/attacks/inimigo/estequiometria.js"></script>
+    <script src="./src/attacks/inimigo/energias.js"></script>
+    <script src="./src/attacks/inimigo/explosion.js"></script>
+
+    <script src="./src/controller.js"></script>
+    <script src="./src/reset.js"></script>
+
+    <script src="./src/main.js"></script>
     
   </body>
 </html>

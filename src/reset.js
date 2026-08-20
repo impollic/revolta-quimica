@@ -19,9 +19,9 @@ function reset() {
   escolhas.elementos[7].w = 120 * apollo.vida/apollo.vidaOriginal;
 
   if (AtaqueHan !== 'COLAPSO ESTEQUIOMÉTRICO') {
-    preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanFalando.gif");
+    preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
   } else {
-    preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanCanFalando.gif");
+    preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-cansado-falando.gif");
   }
 
   gameplay.elementos[2].img = hanSpriteGame();

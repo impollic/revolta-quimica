@@ -3,13 +3,13 @@ class ForcaIonizante extends Ataques {
       super("FORÇA IONIZANTE", projDano,x, y, toX, toY, vn = 1, vw = 3);
       this.vx = vn;
       this.vy = vw;
-      this.img_default = ImageCache.get('./Sprites/ionizante.png');
+      this.img_default = ImageCache.get('./assets/sprites/attacks/forca-ionizante/forca-ionizante.png');
 
       this.proj = [];
       for (let i = 0; i<2; i++) {
         // AJEITAR DEPOIS (PASSAR PARA O CONSTRUTOR)
         let atk = new Ataques('particula', 0, this.toX, this.toY);
-        atk.img_default = ImageCache.get('./Sprites/ionizante.png');
+        atk.img_default = ImageCache.get('./assets/sprites/attacks/forca-ionizante/forca-ionizante.png');
         atk.random_vx = (i%2==0) ? 5 : -5;
         atk.random_vy = random(1, -1);
         this.proj.push(atk);

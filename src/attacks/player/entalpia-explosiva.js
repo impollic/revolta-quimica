@@ -7,7 +7,7 @@ class EntalpiaExplosiva extends Ataques {
         for(let i = 0; i < 20; i++) {
             this.proj.push(new Ataques("Partícula", 0, this.toX, this.toY));
         }
-        this.img = ImageCache.get('./Sprites/entalpia1.png');
+        this.img = ImageCache.get('./assets/sprites/attacks/entalpia/entalpia-1.png');
     }
     desenhar () {
       image(this.img, this.x - 16, this.y - 16, 32, 32);

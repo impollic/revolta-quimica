@@ -5,7 +5,7 @@ class Atom {
     this.vx = random(1.5,-1.5);
     this.vy = random(3, 4);
     let num = Math.floor(Math.random() * (3 - 1 + 1) + 1);
-    this.sprite = ImageCache.get((num == 1) ? './Sprites/atomAzul.png' : (num == 2) ? './Sprites/atomVerde.png' : './Sprites/atomVermelho.png');
+    this.sprite = ImageCache.get((num == 1) ? './assets/sprites/attacks/atomos/atomo-azul.png' : (num == 2) ? './assets/sprites/attacks/atomos/atomo-verde.png' : './assets/sprites/attacks/atomos/atomo-vermelho.png');
     
   }
   desenhar() {

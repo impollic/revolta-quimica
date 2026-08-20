@@ -11,29 +11,29 @@ class FeixeInorganico {
     if (!this.vy) {
       if (this.cor == "white") {
         if (this.vx > 0) {
-          this.img = ImageCache.get('./Sprites/Feixes/ing_right.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-comum/feixe_right.png');
         } else {
-          this.img = ImageCache.get('./Sprites/Feixes/ing_left.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-comum/feixe-left.png');
         }
       } else {
         if (this.vx > 0) {
-          this.img = ImageCache.get('./Sprites/Feixes/ingR_right.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-right.png');
         } else {
-          this.img = ImageCache.get('./Sprites/Feixes/ingR_left.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-left.png');
         }
       }
     } else {
       if (this.cor == "white") {
         if (this.vy > 0) {
-          this.img = ImageCache.get('./Sprites/Feixes/ing_down.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-comum/feixe-down.png');
         } else {
-          this.img = ImageCache.get('./Sprites/Feixes/ing_up.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-comum/feixe_up.png');
         }
       } else {
         if (this.vy > 0) {
-          this.img = ImageCache.get('./Sprites/Feixes/ingR_down.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-down.png');
         } else {
-          this.img = ImageCache.get('./Sprites/Feixes/ingR_up.png');
+          this.img = ImageCache.get('./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-up.png');
         }
       }
     }   

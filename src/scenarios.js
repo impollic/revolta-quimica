@@ -23,7 +23,7 @@ function carregarPaginas () {
   // Montando o menu
   menu.elementos.push(
     new Caixa (width/2 - 250, height/2 - 30, 200, 500, "white", "\n* Escolha uma opção", 0, 0, 1, 0),
-    new Caixa (width/2 - 250, 10, 250, 500, "red", "", "black", 1, 0, 0, './Sprites/Personagens/pollic2.gif'),
+    new Caixa (width/2 - 250, 10, 250, 500, "red", "", "black", 1, 0, 0, './assets/sprites/characters/apollo/apollo-menu.gif'),
     new Caixa(0, height - 90, 80, 142, "orange", "  LUTAR", 0, 0, 0, 1, undefined, '🗡'),
     new Caixa(152, height - 90, 80, 142, "orange", "  ITEM", 0, 0, 0, 1, undefined, '༄'),
     new Caixa(304, height - 90, 80, 142, "orange", "  CREDIT", 0, 0, 0, 1, undefined, '✦'),
@@ -35,7 +35,7 @@ function carregarPaginas () {
   ajuda.elementos.push(
     new Caixa (10, 10, height - 20, width - 20, "white", `\nComo jogar?\n\n1. Escolha a opção LUTAR\n2. Escolha um dos ataques disponíveis\n3. Desvie dos ataques do professor\n- Utilize WASD/Setas para se mover\n4. Espere seu ataque carregar\n5. Repita o processo até nocautear\nou ser nocauteado\n\nSe divirta!\n`, "black", 1, 1),
     new Caixa (width - 200, 20, 60, 180, "orange", "   VOLTAR", "black", 0, 0, 1, undefined, '⮞'),
-    new Caixa (width - 260, height - 250, 250, 250, "gray", " Emilly (Micro Coulomb)", "black", 1, 1, 0, './Sprites/Personagens/emilly.png' )
+    new Caixa (width - 260, height - 250, 250, 250, "gray", " Emilly (Micro Coulomb)", "black", 1, 1, 0, './assets/sprites/characters/emilly/emilly-menu.png' )
   );
   // Montando a tela de escolhas
   escolhas.elementos.push(
@@ -45,20 +45,20 @@ function carregarPaginas () {
     new Caixa (width/2 + 85, height/2 - 25, 190, 160, "#03ff07", "\n\n OXIDAÇÃO \n REDUZIDA", 0, 0, 1,  true),
     //new Caixa (width - 50, 10, 40, 40, "orange", ">", 0, 0, 0,  true),
     new Caixa (width/2 - 250, height - 80, 50, 500, "gray", "       Escolha um ataque!", 0, 0),
-    new Caixa (width/2 - 250, 10, 250, 500, "red", "", "black", 1, 0, 0, './Sprites/Personagens/pollic3.gif'),
+    new Caixa (width/2 - 250, 10, 250, 500, "red", "", "black", 1, 0, 0, './assets/sprites/characters/apollo/apollo-preparar-ataque.gif'),
     new Caixa(width/2 - 260, height/2 + 180, 20, 400, "white", `Apollo LV10 HP          ${apollo.vida}/${apollo.vidaOriginal}`, 0, 1),
     new Caixa(width/2 - 30, height/2 + 180, 20, 120, "yellow", "", "yellow")
   );
   // Montando a tela de introdução
   intro.elementos.push(
-    new Caixa (10, 10, 580, 580, "magenta", "", 0, 1, 0, 0, './Sprites/intro.png'),
-    new Caixa (width/2 - 47.5, height/2 + 160, 40, 95, color('rgba(255, 255, 255, 0.4)'), "", 0, 0, 0, 1, './Sprites/jogar.png'),
+    new Caixa (10, 10, 580, 580, "magenta", "", 0, 1, 0, 0, './assets/sprites/intro/intro.png'),
+    new Caixa (width/2 - 47.5, height/2 + 160, 40, 95, color('rgba(255, 255, 255, 0.4)'), "", 0, 0, 0, 1, './assets/sprites/intro/jogar.png'),
     new Caixa (width - 100, height - 20, 1, 0, 'white', 'v26.1', 0, 1),
   );
   // Montando a tela de preJogo
   preJogo.elementos.push(
     new Caixa (width/2 - 250, height/2 - 30, 280, 500, "white", "", 0, 0),
-    new Caixa (width/2, 10, 250, 250, "red", "", "black", 1, 0, 0, './Sprites/Hann/hanFalando.gif'),
+    new Caixa (width/2, 10, 250, 250, "red", "", "black", 1, 0, 0, './assets/sprites/characters/hanniman/hanniman-falando.gif'),
     new Caixa (width/2 - 250, 10, 50, 240, "white", "Prof. Hanniman", "black", 0, 0),
     new Caixa (width/2 - 250, 60, 200, 240, "gray", `\nHP: ${hanniman.vida}/${hanniman.vidaOriginal}\nATK:${hanniman.ataque}\nDEF:${hanniman.defesa}\nLV:20`, "black", 1, 1, 0),
     new Caixa(width/2 - 260, height - 40, 20, 400, "white", `Apollo LV10 HP          ${apollo.vida}/${apollo.vidaOriginal}`, 0, 1),
@@ -80,12 +80,12 @@ function carregarPaginas () {
   gameOver.elementos.push(
     new Caixa(width/2 - 75, height - 150, 40, 150, "white", "Reiniciar", 0, 0, 0, 1),
     new Caixa (width/2 - 80, 150, 1, 1, "red", "GAME OVER.", 0, 1),
-    new Caixa(width/2 - 95, height/2 - 100, 200, 200, "white", "", 0, 1, 0, 0, "./Sprites/pendulQ.png")
+    new Caixa(width/2 - 95, height/2 - 100, 200, 200, "white", "", 0, 1, 0, 0, "./assets/sprites/characters/apollo/pingente/pingente-quebrado.png")
   );
   // Montando a tela de préintrodução
   loreContada.elementos.push(
     new Caixa (10, width/2 + 70, 220, 580, "white", "", 0, 0, 0, 0),
-    new Caixa (20, width/2 + 80, 200, 200, "gray", "Emilly (Micro Coulomb)", 0, 1, 1, 0,'./Sprites/Personagens/emi32v1.png'),
+    new Caixa (20, width/2 + 80, 200, 200, "gray", "Emilly (Micro Coulomb)", 0, 1, 1, 0,'./assets/sprites/characters/emilly/emilly-idle.png'),
     new CaixaDialogo (220, width/2 + 70, 220, 370, [
       "* Pois bem...   ",
       "* Nossa história se pas\nsa no final de janeiro    ",
@@ -100,7 +100,7 @@ function carregarPaginas () {
   // Montando a tela de diálogo de recuperação de vida
   recVida.elementos.push(
     new Caixa (10, width/2 + 70, 220, 580, "white", "", 0, 0, 0, 0),
-    new Caixa (20, width/2 + 80, 200, 200, "gray", "Emilly (Micro Coulomb)", 0, 1, 1, 0,'./Sprites/Personagens/emi32v1.png'),
+    new Caixa (20, width/2 + 80, 200, 200, "gray", "Emilly (Micro Coulomb)", 0, 1, 1, 0,'./assets/sprites/characters/emilly/emilly-idle.png'),
     new CaixaDialogo (220, width/2 + 70, 220, 370, [
       "* Voltei!       ",
       "* Nossa, você parece\nestar muito machucado...    ",
@@ -123,6 +123,6 @@ function carregarPaginas () {
   fimJogo.elementos.push(
     new Caixa (width/2 - 150, height/2 - 20, 1, 1, 255, "Obrigado por jogar!", 0, 1),
     new Caixa (10, height/2 + 30, 1, 1, "gray", "Agradecimentos especiais para:\n* Emilly Victoria - 1SER#2\n* Nicolas Lima - 1TIN\n* Grazielle Mariano - 1TIN\n* Walmir Lima - 3TIN\n* Erika Travassos - 2TIN", 0, 1),
-    new Caixa (width/2 - 250, 10, 250, 500, "red", "", "black", 1, 0, 0, './Sprites/Personagens/pollic3.gif'),
+    new Caixa (width/2 - 250, 10, 250, 500, "red", "", "black", 1, 0, 0, './assets/sprites/characters/apollo/apollo-preparar-ataque.gif'),
   )
 }

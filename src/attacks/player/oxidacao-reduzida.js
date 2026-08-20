@@ -3,13 +3,13 @@ class OxidacaoReduzida extends Ataques {
     super("OXIDAÇÃO REDUZIDA", projDano,x, y, toX, toY, vn = 3, vw = 3);
       this.vx = vn;
       this.vy = vw;
-      this.img_default = ImageCache.get('./Sprites/oxired.png');
+      this.img_default = ImageCache.get('./assets/sprites/attacks/oxireducao/oxireducao.png');
 
       this.proj = [];
 
       // AJEITAR DEPOIS (PASSAR PARA O CONSTRUTOR)
       let atk = new Ataques('particula', 0, this.toX, this.toY);
-      atk.img_default = ImageCache.get('./Sprites/oxired.png');
+      atk.img_default = ImageCache.get('./assets/sprites/attacks/oxireducao/oxireducao.png');
       atk.random_vy = 2;
       this.proj.push(atk);
       

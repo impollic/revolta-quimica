@@ -5,8 +5,8 @@ let JOGADOR_ANIMACAO_ATIVOU = false;
 function explosion(dt = 1) { 
   if (!JOGADOR_ANIMACAO_ATIVOU) {
     JOGADOR_ANIMACAO_ATIVOU = true;
-    ativarAnimacaoAtaque('./Sprites/Personagens/pollicATK.gif');
-    gameplay.elementos[2].img = ImageCache.get("./Sprites/Hann/hanCora.gif");
+    ativarAnimacaoAtaque('./assets/sprites/characters/apollo/apollo-atacando-animated.gif');
+    gameplay.elementos[2].img = ImageCache.get("./assets/sprites/characters/hanniman/hanniman-coracao.gif");
   }
 
   energias.forEach(e => {

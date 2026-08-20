@@ -4,47 +4,47 @@ function sairJogo() {
 }
 // CARREGANDO AS MÍDIAS
 function preload() {
-  somClique = loadSound('./Sons/click1.mp3');
-  dano = loadSound('./Sons/dano.mp3');
-  cutscene = createVideo('./Sprites/Cutscene/cutscene.mp4');
+  somClique = loadSound('./assets/sfx/click.mp3');
+  dano = loadSound('./assets/sfx/damage.mp3');
+  cutscene = createVideo('./assets/sprites/cutscene/animated-cutscene.mp4');
 
   // PRELOAD ALL IMAGES INTO CACHE
   ImageCache.preload([
-    "./Sprites/Hann/hanCora.gif",
-    "./Sprites/Hann/hanFalando.gif",
-    "./Sprites/Hann/hanOlho.gif",
-    "./Sprites/Hann/hanIdle.gif",
-    "./Sprites/Hann/hanBraco.gif",
-    "./Sprites/Hann/hanBracos.gif",
-    "./Sprites/Hann/hanCansado.gif",
-    "./Sprites/Hann/hanCanFalando.gif",
-    "./Sprites/Personagens/emi32v1.png",
-    "./Sprites/Personagens/emi32v2.png",
-    "./Sprites/Personagens/emi32v3.png",
-    "./Sprites/Personagens/emilly.png",
-    "./Sprites/Personagens/pollic2.gif",
-    "./Sprites/Personagens/pollic3.gif",
-    "./Sprites/Personagens/pollicATK.gif",
-    "./Sprites/pendul.gif",
-    "./Sprites/pendulQ.png",
-    "./Sprites/intro.png",
-    "./Sprites/jogar.png",
-    "./Sprites/atomAzul.png",
-    "./Sprites/atomVerde.png",
-    "./Sprites/atomVermelho.png",
-    "./Sprites/entalpia1.png",
-    "./Sprites/entalpia2.png",
-    "./Sprites/ionizante.png",
-    "./Sprites/oxired.png",
-    "./Sprites/esferaEletrostatica.png",
-    "./Sprites/Feixes/ing_right.png",
-    "./Sprites/Feixes/ing_left.png",
-    "./Sprites/Feixes/ingR_right.png",
-    "./Sprites/Feixes/ingR_left.png",
-    "./Sprites/Feixes/ing_down.png",
-    "./Sprites/Feixes/ing_up.png",
-    "./Sprites/Feixes/ingR_down.png",
-    "./Sprites/Feixes/ingR_up.png"
+    "./assets/sprites/characters/hanniman/hanniman-coracao.gif",
+    "./assets/sprites/characters/hanniman/hanniman-falando.gif",
+    "./assets/sprites/characters/hanniman/hanniman-olho.gif",
+    "./assets/sprites/characters/hanniman/hanniman-idle.gif",
+    "./assets/sprites/characters/hanniman/hanniman-braco.gif",
+    "./assets/sprites/characters/hanniman/hanniman-bracos.gif",
+    "./assets/sprites/characters/hanniman/hanniman-cansado.gif",
+    "./assets/sprites/characters/hanniman/hanniman-cansado-falando.gif",
+    "./assets/sprites/characters/emilly/emilly-idle.png",
+    "./assets/sprites/characters/emilly/emilly-olho-fechado.png",
+    "./assets/sprites/characters/emilly/emilly-chateada.png",
+    "./assets/sprites/characters/emilly/emilly-menu.png",
+    "./assets/sprites/characters/apollo/apollo-menu.gif",
+    "./assets/sprites/characters/apollo/apollo-preparar-ataque.gif",
+    "./assets/sprites/characters/apollo/apollo-atacando-animated.gif",
+    "./assets/sprites/characters/apollo/pingente/pingente.gif",
+    "./assets/sprites/characters/apollo/pingente/pingente-quebrado.png",
+    "./assets/sprites/intro/intro.png",
+    "./assets/sprites/intro/jogar.png",
+    "./assets/sprites/attacks/atomos/atomo-azul.png",
+    "./assets/sprites/attacks/atomos/atomo-verde.png",
+    "./assets/sprites/attacks/atomos/atomo-vermelho.png",
+    "./assets/sprites/attacks/entalpia/entalpia-1.png",
+    "./assets/sprites/attacks/entalpia/entalpia-2.png",
+    "./assets/sprites/attacks/forca-ionizante/forca-ionizante.png",
+    "./assets/sprites/attacks/oxireducao/oxireducao.png",
+    "./assets/sprites/attacks/descarga-voltaica/esfera-eletrostatica.png",
+    "./assets/sprites/attacks/feixes/feixe-comum/feixe_right.png",
+    "./assets/sprites/attacks/feixes/feixe-comum/feixe-left.png",
+    "./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-right.png",
+    "./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-left.png",
+    "./assets/sprites/attacks/feixes/feixe-comum/feixe-down.png",
+    "./assets/sprites/attacks/feixes/feixe-comum/feixe_up.png",
+    "./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-down.png",
+    "./assets/sprites/attacks/feixes/feixe-vermelho/feixe-vermelho-up.png"
   ]);
 }
 
@@ -55,7 +55,7 @@ function setup() {
   
   // CONFIGURAÇÃO DO CANVAS
   textSize(30);
-  textFont(loadFont('./Fonte/determination-mono-web-font/DeterminationMonoWebRegular-Z5oq.ttf'));
+  textFont(loadFont('./assets/fonts/determination-mono-web-regular.ttf'));
   noSmooth();
  
   //para filtros
@@ -68,7 +68,7 @@ function setup() {
   cutscene.volume(0.2);
 
   // PLAYER (velocidade alterada para 12)
-  apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [ImageCache.load('./Sprites/pendul.gif')]);
+  apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [ImageCache.load('./assets/sprites/characters/apollo/pingente/pingente.gif')]);
 
   // DEFINIÇÃO DE FUNÇÕES RECARREGÁVEIS
   carregarPaginas();
@@ -204,11 +204,11 @@ function draw() {
       if (caixa instanceof CaixaDialogo) {
         caixa.acelerar();
         if (caixa.passarFrase()) {
-          preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanFalando.gif");
+          preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
           irPara(loreContada, lab);
         } else {
-          if (caixa.n == 3) loreContada.elementos[1].img = ImageCache.load('./Sprites/Personagens/emi32v2.png');
-          if (caixa.n == 7) loreContada.elementos[1].img = ImageCache.load('./Sprites/Personagens/emi32v3.png');
+          if (caixa.n == 3) loreContada.elementos[1].img = ImageCache.load('./assets/sprites/characters/emilly/emilly-olho-fechado.png');
+          if (caixa.n == 7) loreContada.elementos[1].img = ImageCache.load('./assets/sprites/characters/emilly/emilly-chateada.png');
         }
       };
     })
@@ -232,7 +232,7 @@ function draw() {
       if (caixa instanceof CaixaDialogo) {
         caixa.acelerar();
         if (caixa.passarFrase()) {
-          preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanFalando.gif");
+          preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
           irPara(recVida, menu); 
           // MUDANÇAS
         } 

@@ -33,7 +33,7 @@ function irPara (saida, vinda) {
         if (AtaqueHan == "COLAPSO ESTEQUIOMÉTRICO") {
             esc("Batalha - Ato Final");
         }
-        ativarAnimacaoAtaque('./Sprites/Hann/hanOlho.gif');
+        ativarAnimacaoAtaque('./assets/sprites/characters/hanniman/hanniman-olho.gif');
     }
     saida.ativo = false;
     vinda.ativo = true;

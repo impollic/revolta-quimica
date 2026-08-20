@@ -17,7 +17,7 @@ class CaixaDialogo extends Caixa {
       this.g = 0;
       this.n++;
       if (this.n == this.frases.length-1) {
-        preJogo.elementos[1].img = ImageCache.load("./Sprites/Hann/hanOlho.gif");
+        preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-olho.gif");
       }
     }
     // VELOCIDADE TEXTO

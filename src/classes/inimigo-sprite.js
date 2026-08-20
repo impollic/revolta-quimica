@@ -2,16 +2,16 @@
 function hanSpriteGame () {
   switch (AtaqueHan) {
     case "ASCENSÃO INTERATÔMICA":
-      return ImageCache.load("./Sprites/Hann/hanIdle.gif");
+      return ImageCache.load("./assets/sprites/characters/hanniman/hanniman-idle.gif");
       break;
     case "MANIPULAÇÃO INORGÂNICA":
-      return ImageCache.load("./Sprites/Hann/hanBraco.gif");
+      return ImageCache.load("./assets/sprites/characters/hanniman/hanniman-braco.gif");
       break;
     case "DESCARGA VOLTAICA":
-      return ImageCache.load("./Sprites/Hann/hanBracos.gif");
+      return ImageCache.load("./assets/sprites/characters/hanniman/hanniman-bracos.gif");
       break;
     case "COLAPSO ESTEQUIOMÉTRICO":
-      return ImageCache.load("./Sprites/Hann/hanCansado.gif");
+      return ImageCache.load("./assets/sprites/characters/hanniman/hanniman-cansado.gif");
       break;
   }
 }

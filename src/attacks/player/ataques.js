@@ -15,7 +15,7 @@ class Ataques {
         this.random_vy = random(5, -5);
         this.random_d = random(5, 15);
 
-        this.img_default = ImageCache.get('./Sprites/entalpia2.png');
+        this.img_default = ImageCache.get('./assets/sprites/attacks/entalpia/entalpia-2.png');
     }
     desenhar() {
       image(this.img_default, this.x - 16, this.y - 16, 32, 32);

@@ -1,8 +1,6 @@
 @font-face {
   font-family: "undertale";
-  src: url('./Fonte/determination-mono-web-font/DeterminationMonoWebRegular-Z5oq.ttf');
-  /*   
-  ./Fonte/determination-mono-web-font/DeterminationSansWebRegular-369X.ttf*/
+  src: url('../assets/fonts/determination-mono-web-regular.ttf');
 }
 
 * {
@@ -19,7 +17,7 @@ html, body {
   height: 100vh;
   width: 100vw;
   background-color: black;
-  cursor: url('./Sprites/cursor.png') 0 0, auto;
+  cursor: url('../assets/sprites/ui/cursor/cursor.png') 0 0, auto;
   overflow: hidden;
 }
 
