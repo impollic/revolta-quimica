@@ -7,6 +7,7 @@ let exploOne = true;
 let playCutscene = true;
 let cutsceneTimeout = null;
 let ascensaoSpawnTimer = 0;
+let ultimaDirecaoAscensao = 0;
 
 // MÚSICA DA BATALHA ATUAL (chave do MusicManager)
 let musica_batalha_atual = 'massdestruc';

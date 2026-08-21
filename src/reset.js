@@ -5,6 +5,7 @@ function reset() {
   exploOne = true;
   JOGADOR_ANIMACAO_ATIVOU = false;
   atomos = [];
+  ultimaDirecaoAscensao = 0;
   apollo.x = width/2;
   apollo.y = height/2;
   hanniman.g = 0;

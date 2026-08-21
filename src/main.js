@@ -34,7 +34,7 @@ function preload() {
     "./assets/sprites/characters/apollo/apollo-menu.gif",
     "./assets/sprites/characters/apollo/apollo-preparar-ataque.gif",
     "./assets/sprites/characters/apollo/apollo-atacando-animated.gif",
-    "./assets/sprites/characters/apollo/pingente/pingente.gif",
+    "./assets/sprites/characters/apollo/pingente/pingente.png",
     "./assets/sprites/characters/apollo/pingente/pingente-quebrado.png",
     "./assets/sprites/intro/intro.png",
     "./assets/sprites/intro/jogar.png",
@@ -77,7 +77,7 @@ function setup() {
   cutscene.volume(0.2);
 
   // PLAYER (velocidade alterada para 12)
-  apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [ImageCache.load('./assets/sprites/characters/apollo/pingente/pingente.gif')]);
+  apollo = new Personagem (width/2, height/2, 20, 5, 10, 12, [ImageCache.load('./assets/sprites/characters/apollo/pingente/pingente.png')]);
 
   // DEFINIÇÃO DE FUNÇÕES RECARREGÁVEIS
   carregarPaginas();
@@ -321,13 +321,22 @@ function draw() {
 
       // ATAQUE DE ASCENSÃO INTERATÔMICA 
       if (AtaqueHan == "ASCENSÃO INTERATÔMICA") {
-        if (v < 7) {
+        if (v < 10) {
           ascensaoSpawnTimer += deltaTime;
           if (ascensaoSpawnTimer >= 2000) {
             ascensaoSpawnTimer -= 2000;
+            // A FORMAÇÃO INTEIRA PENDA PRA UM LADO A CADA VAGA (TENTANDO SEMPRE
+            // INVERTER O LADO DA VAGA ANTERIOR), PRO JOGADOR NÃO DECORAR O RITMO
+            let direcao = Math.random() < 0.5 ? -1 : 1;
+            if (ultimaDirecaoAscensao !== 0 && Math.random() < 0.75) direcao = -ultimaDirecaoAscensao;
+            ultimaDirecaoAscensao = direcao;
+            let deslocamentoFormacao = direcao * random(10, 30);
+            // COLUNAS DECORATIVAS NAS BEIRADAS (-190/+190) E 3 COLUNAS DE DESVIO
+            // DENTRO DA ÁREA QUE O JOGADOR ANDA (-85/0/+85)
+            let colunas = [-190, -85, 0, 85, 190];
             for (let j = 1; j <= 3; j++) {
               for (let i = 1; i <= 5; i++) {
-                atomos.push(new Atom(i * width / 5 - 60, -10));
+                atomos.push(new Atom(width / 2 + colunas[i - 1] + deslocamentoFormacao, -10 - (j - 1) * 65, 1 + v * 0.05));
               }
             }
             v++;
