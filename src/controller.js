@@ -5,10 +5,23 @@ let optEscolhida = "";
 let v = 0;
 let exploOne = true;
 let playCutscene = true;
+let cutsceneTimeout = null;
 let ascensaoSpawnTimer = 0;
+let ultimaDirecaoAscensao = 0;
 
 // MÚSICA DA BATALHA ATUAL (chave do MusicManager)
 let musica_batalha_atual = 'massdestruc';
+
+// ENTRADA GLOBAL DE DIÁLOGO (borda de clique/ENTER, atualizada 1x por frame)
+let entradaDialogoAgora = false;
+let _mouseEntradaAnterior = false;
+let _enterEntradaAnterior = false;
+function atualizarEntradaDialogo() {
+  const mouseAgora = mouseIsPressed;
+  const enterAgora = keyIsDown(ENTER);
+  entradaDialogoAgora = (mouseAgora && !_mouseEntradaAnterior) || (enterAgora && !_enterEntradaAnterior);
+  [_mouseEntradaAnterior, _enterEntradaAnterior] = [mouseAgora, enterAgora];
+}
 
 // FUNÇÃO DE DESCRIÇÃO DE LOCAL
 const lado = document.getElementById('lado');

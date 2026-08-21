@@ -33,7 +33,7 @@ class Personagem {
     this.pendul = sprites[0];
   }
   mostrar() {
-    image(this.pendul, this.x - 16, this.y - 17, 16 * 2, 17 * 2);
+    image(this.pendul, this.x - 16, this.y - 16, 16 * 2, 16 * 2);
   }
   mover(dt = 1) {
     let dx = 0, dy = 0;

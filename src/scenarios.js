@@ -55,6 +55,10 @@ function carregarPaginas () {
     new Caixa (width/2 - 47.5, height/2 + 160, 40, 95, color('rgba(255, 255, 255, 0.4)'), "", 0, 0, 0, 1, './assets/sprites/intro/jogar.png'),
     new Caixa (width - 100, height - 20, 1, 0, 'white', 'v26.1', 0, 1),
   );
+  // Montando a tela da cutscene
+  lab.elementos.push(
+    new Caixa (15, 15, 45, 130, "orange", "  PULAR", "black", 0, 0, 1, undefined, '⮞')
+  );
   // Montando a tela de preJogo
   preJogo.elementos.push(
     new Caixa (width/2 - 250, height/2 - 30, 280, 500, "white", "", 0, 0),
@@ -63,7 +67,8 @@ function carregarPaginas () {
     new Caixa (width/2 - 250, 60, 200, 240, "gray", `\nHP: ${hanniman.vida}/${hanniman.vidaOriginal}\nATK:${hanniman.ataque}\nDEF:${hanniman.defesa}\nLV:20`, "black", 1, 1, 0),
     new Caixa(width/2 - 260, height - 40, 20, 400, "white", `Apollo LV10 HP          ${apollo.vida}/${apollo.vidaOriginal}`, 0, 1),
     new Caixa(width/2 - 30, height - 40, 20, 120, "yellow", "", "yellow"),
-    new CaixaDialogo(width/2 - 240, height/2 - 20, 260, 480, hanniman.dialogo, 0.2) // MUDANÇAS
+    new CaixaDialogo(width/2 - 240, height/2 - 20, 260, 480, hanniman.dialogo, 0.2), // MUDANÇAS
+    new Caixa (width - 44, 12, 38, 34, "orange", "", "black", 0, 0, 1, undefined, '»')
   );
   // Montando a tela de gameplay
   gameplay.elementos.push(
@@ -73,7 +78,7 @@ function carregarPaginas () {
   );
   // Montando a tela de créditos
   creditos.elementos.push(
-    new Caixa(0, 0, height, width, 255, `\nREVOLTA QUÍMICA por ImPollic (Final)\n\nPROGRAMAÇÃO: Apollo Borges\n\nPERSONAGENS:\n - Professor Hanniman\n - Emilly Victoria (Micro Coulomb)\n\nSPRITES: Autorais\nINSPIRAÇÃO: Undertale por Toby Fox\n\nMÚSICAS: Instrumental da saga Persona\nCOVER: Anselmo Kotch, Geovana Salem\nLuaDelChiaro, Sunna Lux, Vinny Connect\nSafira Lucca`, 0, 1, 1),
+    new Caixa(0, 0, height, width, 255, `\nREVOLTA QUÍMICA por ImPollic (v2026.1)\n\nPROGRAMAÇÃO: Apollo Borges\n\nPERSONAGENS:\n - Professor Hanniman\n - Emilly Victoria (Micro Coulomb)\n\nSPRITES: Autorais\nINSPIRAÇÃO: Undertale por Toby Fox\n\nMÚSICAS: Instrumental da saga Persona\nCOVER: Anselmo Kotch, Geovana Salem\nLuaDelChiaro, Sunna Lux, Vinny Connect\nSafira Lucca`, 0, 1, 1),
     new Caixa(450, 110, 80, 142, 'orange', '  VOLTAR', 0, 0, 0, 1, undefined, '⮞')
   )
   // Montando a tela de gameover
@@ -96,6 +101,7 @@ function carregarPaginas () {
       "* E é para onde ele es\ntá indo agora...         ",
       "* E agora, se você me\nder licença, tenho\nque ir para a aula de\nNelson, adeus.                   ",
     ], 0.2, 1),
+    new Caixa (width - 135, 15, 45, 130, "orange", "  PULAR", "black", 0, 0, 1, undefined, '⮞')
   );
   // Montando a tela de diálogo de recuperação de vida
   recVida.elementos.push(
@@ -110,6 +116,7 @@ function carregarPaginas () {
       "> Micro Coulomb\nescolheu... CORRENTE\nCURATIVA!        ",
       "> Você recebeu um cho\nque elétrico que\nrestaurou seu HP        "
     ], 0.2, 1),
+    new Caixa (width - 135, 15, 45, 130, "orange", "  PULAR", "black", 0, 0, 1, undefined, '⮞')
   );
   // Montando a tela de inventário
   inventario.elementos.push(
