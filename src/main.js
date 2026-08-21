@@ -2,6 +2,15 @@
 function sairJogo() {
   document.getElementById('jogo').innerHTML = `<p>404 Game Not Found :/ </p>`;
 }
+
+// INSTRUÇÕES DE DIÁLOGO (DOM)
+let _instrucoesDialogoVisivel = null;
+function atualizarInstrucoesDialogo(visivel) {
+  if (_instrucoesDialogoVisivel === visivel) return;
+  _instrucoesDialogoVisivel = visivel;
+  const el = document.getElementById('instrucoes-dialogo');
+  if (el) el.classList.toggle('visivel', visivel);
+}
 // CARREGANDO AS MÍDIAS
 function preload() {
   somClique = loadSound('./assets/sfx/click.mp3');
@@ -113,6 +122,8 @@ function draw() {
     setTimeout(() => el.style.display = 'none', 300);
   }
   background(0);
+  atualizarEntradaDialogo();
+  atualizarInstrucoesDialogo(preJogo.ativo || loreContada.ativo || recVida.ativo);
   // MENU
   if (menu.ativo) {
     menu.elementos.forEach(caixa => {
@@ -185,59 +196,86 @@ function draw() {
   }
   // DIALOGO PRE-GAMEPLAY
   if (preJogo.ativo) {
+    const dialogo = preJogo.elementos.find(caixa => caixa instanceof CaixaDialogo);
+    let pulado = false;
     preJogo.elementos.forEach(caixa => {
       caixa.desenhar();
-      if (caixa instanceof CaixaDialogo) {
-        if (caixa.passarFrase()) {
-          hanniman.vida -= 25;
-          carregarEnergias();
-          irPara(preJogo, gameplay);
-        }
-        caixa.acelerar();
-      };
+      if (caixa.apertavel && caixa.apertado()) pulado = true;
     });
+    if (pulado) {
+      dialogo.reiniciar();
+      hanniman.vida -= 25;
+      carregarEnergias();
+      irPara(preJogo, gameplay);
+    } else if (dialogo.passarFrase()) {
+      hanniman.vida -= 25;
+      carregarEnergias();
+      irPara(preJogo, gameplay);
+    } else {
+      dialogo.acelerar();
+      if (dialogo.n == dialogo.frases.length - 1) {
+        preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-olho.gif");
+      }
+    }
   }
   // DIALOGO DE PRE-MENU
   if (loreContada.ativo) {
+    const dialogo = loreContada.elementos.find(caixa => caixa instanceof CaixaDialogo);
+    let pulado = false;
     loreContada.elementos.forEach(caixa => {
       caixa.desenhar();
-      if (caixa instanceof CaixaDialogo) {
-        caixa.acelerar();
-        if (caixa.passarFrase()) {
-          preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
-          irPara(loreContada, lab);
-        } else {
-          if (caixa.n == 3) loreContada.elementos[1].img = ImageCache.load('./assets/sprites/characters/emilly/emilly-olho-fechado.png');
-          if (caixa.n == 7) loreContada.elementos[1].img = ImageCache.load('./assets/sprites/characters/emilly/emilly-chateada.png');
-        }
-      };
-    })
+      if (caixa.apertavel && caixa.apertado()) pulado = true;
+    });
+    if (pulado) {
+      dialogo.reiniciar();
+      irPara(loreContada, lab);
+    } else if (dialogo.passarFrase()) {
+      preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
+      irPara(loreContada, lab);
+    } else {
+      dialogo.acelerar();
+      if (dialogo.n == 3) loreContada.elementos[1].img = ImageCache.load('./assets/sprites/characters/emilly/emilly-olho-fechado.png');
+      if (dialogo.n == 7) loreContada.elementos[1].img = ImageCache.load('./assets/sprites/characters/emilly/emilly-chateada.png');
+    }
   }
   // CUTSCENE DO LABORATÓRIO
   if (lab.ativo) {
     if (playCutscene) {
       playCutscene = false;
       cutscene.play();
-      setTimeout( () => {
+      cutsceneTimeout = setTimeout( () => {
         irPara(lab, menu);
       }, 8000);
     }
     square(width/2 - 155, height/2 - 155, 310);
     image(cutscene, width/2 - 150, height/2 - 150, 300, 300);
+    lab.elementos.forEach(caixa => {
+      caixa.desenhar();
+      if (caixa.apertavel && caixa.apertado()) {
+        clearTimeout(cutsceneTimeout);
+        cutscene.stop();
+        irPara(lab, menu);
+      }
+    });
   }
   // DIÁLOGO DE RECUPERAÇÃO DE VIDA 1
   if (recVida.ativo) {
+    const dialogo = recVida.elementos.find(caixa => caixa instanceof CaixaDialogo);
+    let pulado = false;
     recVida.elementos.forEach(caixa => {
       caixa.desenhar();
-      if (caixa instanceof CaixaDialogo) {
-        caixa.acelerar();
-        if (caixa.passarFrase()) {
-          preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
-          irPara(recVida, menu); 
-          // MUDANÇAS
-        } 
-      }
-    })
+      if (caixa.apertavel && caixa.apertado()) pulado = true;
+    });
+    if (pulado) {
+      dialogo.reiniciar();
+      preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
+      irPara(recVida, menu);
+    } else if (dialogo.passarFrase()) {
+      preJogo.elementos[1].img = ImageCache.load("./assets/sprites/characters/hanniman/hanniman-falando.gif");
+      irPara(recVida, menu);
+    } else {
+      dialogo.acelerar();
+    }
   }
   // TELA DE GAME OVER
   if (gameOver.ativo) {
